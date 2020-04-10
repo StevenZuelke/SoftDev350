@@ -1,0 +1,6 @@
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\InputCreator\InputCreator\bin\Debug\InputCreator.exe.config
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\InputCreator\InputCreator\bin\Debug\InputCreator.exe
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\InputCreator\InputCreator\bin\Debug\InputCreator.pdb
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\InputCreator\InputCreator\obj\Debug\InputCreator.csprojAssemblyReference.cache
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\InputCreator\InputCreator\obj\Debug\InputCreator.exe
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\InputCreator\InputCreator\obj\Debug\InputCreator.pdb
