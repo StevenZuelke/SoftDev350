@@ -1,5 +1,9 @@
 ﻿//Steven Zuelke
 //Minesweeper Main
+/*
+ Team Members: Cody Bafus, Austin Hall
+ This class takes in a minefield and outputs with all hints given
+*/
 
 using System;
 using System.Collections.Generic;
