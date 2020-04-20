@@ -4,3 +4,4 @@ C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\Mi
 C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\Minesweeper\Minesweeper\bin\Debug\Minesweeper.pdb
 C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
 C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\SoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    class Startup
+    public class Startup
     {
         static char[,] Field;
         static string Output = "";
@@ -77,7 +77,7 @@ namespace Minesweeper
 
                     }//end for loop i
                      //Call methods to Fill in new field and add to output.
-                    Calculate();
+                    Field = Calculate(Field);
                     PrintQueue();
 
                 } 
@@ -92,31 +92,31 @@ namespace Minesweeper
     
         //Method to change all '.' to the correct number
         
-        static private void Calculate()
+        static public char[,] Calculate(char[,] field)
         {
-
             char q;
-            for(int i = 0; i < Field.GetLength(0); i++)
+
+            for(int i = 0; i < field.GetLength(0); i++)
             {
 
-                for(int j = 0; j < Field.GetLength(1); j++)
+                for(int j = 0; j < field.GetLength(1); j++)
                 {
 
-                    if(Field[i, j] == '.')
+                    if(field[i, j] == '.')
                     {
 
-                        Field[i, j] = CheckPerim(i, j).ToString()[0];
+                        field[i, j] = CheckPerim(field, i, j).ToString()[0];
 
                     }//end if
 
                 }//end for j
 
             }//end for i
-
+            return field;
         }
 
         //Method to get the number for certain index
-        static private int CheckPerim(int r, int c)
+        static private int CheckPerim(char[,] field, int r, int c)
         {
 
             int mineCount = 0;
@@ -127,10 +127,10 @@ namespace Minesweeper
                 for(int j = c - 1; j <= c + 1; j++)
                 {
 
-                    if(i >= 0 && j >= 0 && i < Field.GetLength(0) && j < Field.GetLength(1))
+                    if(i >= 0 && j >= 0 && i < field.GetLength(0) && j < field.GetLength(1))
                     {
 
-                        if (Field[i, j] == '*') mineCount++;
+                        if (field[i, j] == '*') mineCount++;
 
                     }
 
