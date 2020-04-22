@@ -5,6 +5,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minesweeper;
+using System.IO;
 
 namespace MineSweeperTests
 {
@@ -134,6 +135,9 @@ namespace MineSweeperTests
             //Arrange
             char[,] fieldIn = new char[1, 100];
             char[,] fieldOut;
+            char[,] fieldFile = new char[1, 100];
+            string[] fileLines;
+            char[] currentLine;
 
             for (int i = 0; i < fieldIn.GetLength(0); i++)
             {
@@ -147,22 +151,34 @@ namespace MineSweeperTests
                 }//end for j
 
             }//end for i
-            //Read Board from file to confirm
 
+            //Read Board from file to confirm
+            fileLines = File.ReadAllLines("1x100.txt");
+            for(int i = 0; i < fileLines.Length; i++)
+            {
+
+                currentLine = fileLines[i].ToCharArray();
+                for (int j = 0; j < currentLine.Length; j++)
+                {
+
+                    fieldFile[i, j] = currentLine[j];
+
+                }//end for j
+
+            }//end for i
             //Act
             fieldOut = Startup.Calculate(fieldIn);
             //Assert
             Assert.AreEqual<int>(fieldIn.GetLength(0), fieldOut.GetLength(0));
             Assert.AreEqual<int>(fieldIn.GetLength(1), fieldOut.GetLength(1));
-            // Assert.AreEqual
+            //Confirm the output is the same as confirmed field in the text file
             for (int i = 0; i < fieldOut.GetLength(0); i++)
             {
 
                 for (int j = 0; j < fieldOut.GetLength(1); j++)
                 {
 
-                    if (j <= 50) ;// Assert.AreEqual<char>();
-                    else Assert.AreEqual<char>('*', fieldOut[i, j]);
+                    Assert.AreEqual<char>(fieldFile[i, j], fieldOut[i, j]);
 
                 }//end for j
 
@@ -255,8 +271,11 @@ namespace MineSweeperTests
             //Arrange
             char[,] fieldIn = new char[100, 100];
             char[,] fieldOut;
-            
-            for(int i = 0; i < fieldIn.GetLength(0); i++)
+            char[,] fieldFile = new char[100, 100];
+            string[] fileLines;
+            char[] currentLine;
+
+            for (int i = 0; i < fieldIn.GetLength(0); i++)
             {
 
                 for (int j = 0; j < fieldIn.GetLength(1); j++) 
@@ -269,20 +288,33 @@ namespace MineSweeperTests
 
             }//end for i
 
+            //Read Board from file to confirm
+            fileLines = File.ReadAllLines("100x100.txt");
+            for (int i = 0; i < fileLines.Length; i++)
+            {
+
+                currentLine = fileLines[i].ToCharArray();
+                for (int j = 0; j < currentLine.Length; j++)
+                {
+
+                    fieldFile[i, j] = currentLine[j];
+
+                }//end for j
+
+            }//end for i
             //Act
             fieldOut = Startup.Calculate(fieldIn);
             //Assert
             Assert.AreEqual<int>(fieldIn.GetLength(0), fieldOut.GetLength(0));
             Assert.AreEqual<int>(fieldIn.GetLength(1), fieldOut.GetLength(1));
-            // Assert.AreEqual
+            //Confirm the output is the same as confirmed field in the text file
             for (int i = 0; i < fieldOut.GetLength(0); i++)
             {
 
                 for (int j = 0; j < fieldOut.GetLength(1); j++)
                 {
 
-                    if ((i % 2) == 0) ;// fieldIn[i, j] = '.';
-                    else Assert.AreEqual<char>('*', fieldOut[i, j]);
+                    Assert.AreEqual<char>(fieldFile[i, j], fieldOut[i, j]);
 
                 }//end for j
 
@@ -298,6 +330,9 @@ namespace MineSweeperTests
             //Arrange
             char[,] fieldIn = new char[50, 100];
             char[,] fieldOut;
+            char[,] fieldFile = new char[50, 100];
+            string[] fileLines;
+            char[] currentLine;
 
             for (int i = 0; i < fieldIn.GetLength(0); i++)
             {
@@ -312,20 +347,33 @@ namespace MineSweeperTests
 
             }//end for i
 
+            //Read Board from file to confirm
+            fileLines = File.ReadAllLines("50x100half.txt");
+            for (int i = 0; i < fileLines.Length; i++)
+            {
+
+                currentLine = fileLines[i].ToCharArray();
+                for (int j = 0; j < currentLine.Length; j++)
+                {
+
+                    fieldFile[i, j] = currentLine[j];
+
+                }//end for j
+
+            }//end for i
             //Act
             fieldOut = Startup.Calculate(fieldIn);
             //Assert
             Assert.AreEqual<int>(fieldIn.GetLength(0), fieldOut.GetLength(0));
             Assert.AreEqual<int>(fieldIn.GetLength(1), fieldOut.GetLength(1));
-            // Assert.AreEqual
+            //Confirm the output is the same as confirmed field in the text file
             for (int i = 0; i < fieldOut.GetLength(0); i++)
             {
 
                 for (int j = 0; j < fieldOut.GetLength(1); j++)
                 {
 
-                    if ((i % 2) == 0) ;// fieldIn[i, j] = '.';
-                    else Assert.AreEqual<char>('*', fieldOut[i, j]);
+                    Assert.AreEqual<char>(fieldFile[i, j], fieldOut[i, j]);
 
                 }//end for j
 
@@ -339,8 +387,11 @@ namespace MineSweeperTests
         {
 
             //Arrange
-            char[,] fieldIn = new char[100, 100];
+            char[,] fieldIn = new char[50, 100];
             char[,] fieldOut;
+            char[,] fieldFile = new char[50, 100];
+            string[] fileLines;
+            char[] currentLine;
 
             for (int i = 0; i < fieldIn.GetLength(0); i++)
             {
@@ -355,20 +406,33 @@ namespace MineSweeperTests
 
             }//end for i
 
+            //Read Board from file to confirm
+            fileLines = File.ReadAllLines("50x100quarter.txt");
+            for (int i = 0; i < fileLines.Length; i++)
+            {
+
+                currentLine = fileLines[i].ToCharArray();
+                for (int j = 0; j < currentLine.Length; j++)
+                {
+
+                    fieldFile[i, j] = currentLine[j];
+
+                }//end for j
+
+            }//end for i
             //Act
             fieldOut = Startup.Calculate(fieldIn);
             //Assert
             Assert.AreEqual<int>(fieldIn.GetLength(0), fieldOut.GetLength(0));
             Assert.AreEqual<int>(fieldIn.GetLength(1), fieldOut.GetLength(1));
-            // Assert.AreEqual
+            //Confirm the output is the same as confirmed field in the text file
             for (int i = 0; i < fieldOut.GetLength(0); i++)
             {
 
                 for (int j = 0; j < fieldOut.GetLength(1); j++)
                 {
 
-                    if ((i % 2) == 0) ;// fieldIn[i, j] = '.';
-                    else Assert.AreEqual<char>('*', fieldOut[i, j]);
+                    Assert.AreEqual<char>(fieldFile[i, j], fieldOut[i, j]);
 
                 }//end for j
 
