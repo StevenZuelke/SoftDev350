@@ -9,10 +9,10 @@ using System.IO;
 
 namespace MineSweeperTests
 {
+
     [TestClass]
     public class Tests
     {
-
 
         [TestMethod]
         public void OneByOne_NoMine()
@@ -38,7 +38,7 @@ namespace MineSweeperTests
 
             fieldIn[0, 0] = '*';
             //Act
-            fieldIn = Startup.Calculate(fieldIn);
+            Startup.Calculate(fieldIn);
             //Assert
             Assert.AreEqual<char>('*', fieldIn[0, 0]);
 

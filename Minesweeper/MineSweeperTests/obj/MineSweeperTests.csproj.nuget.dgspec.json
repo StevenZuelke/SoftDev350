@@ -1,43 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/MineSweeperTests/MineSweeperTests.csproj": {}
+    "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\MineSweeperTests\\MineSweeperTests.csproj": {}
   },
   "projects": {
-    "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/Minesweeper.csproj": {
+    "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\MineSweeperTests\\MineSweeperTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/Minesweeper.csproj",
-        "projectName": "Minesweeper",
-        "projectPath": "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/Minesweeper.csproj"
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/MineSweeperTests/MineSweeperTests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/MineSweeperTests/MineSweeperTests.csproj",
+        "projectUniqueName": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\MineSweeperTests\\MineSweeperTests.csproj",
         "projectName": "MineSweeperTests",
-        "projectPath": "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/MineSweeperTests/MineSweeperTests.csproj",
-        "packagesPath": "/Users/austinhall/.nuget/packages/",
-        "outputPath": "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/MineSweeperTests/obj/",
+        "projectPath": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\MineSweeperTests\\MineSweeperTests.csproj",
+        "packagesPath": "C:\\Users\\StevenZuelke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\MineSweeperTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/austinhall/.config/NuGet/NuGet.Config"
+          "C:\\Users\\StevenZuelke\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/Minesweeper.csproj": {
-                "projectPath": "/Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/Minesweeper.csproj"
+              "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {
+                "projectPath": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\Minesweeper\\Minesweeper.csproj"
               }
             }
           }
@@ -83,8 +74,19 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+        "projectName": "Minesweeper",
+        "projectPath": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\Minesweeper\\Minesweeper.csproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

@@ -12,3 +12,10 @@ C:/Users/StevenZuelke/Desktop/Computer Science/350Software/GitRepo/SoftDev350/Mi
 /Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/obj/Debug/Minesweeper.csproj.CoreCompileInputs.cache
 /Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/obj/Debug/Minesweeper.exe
 /Users/austinhall/Desktop/CSCD350/MineSweeperTests/SoftDev350/Minesweeper/Minesweeper/obj/Debug/Minesweeper.pdb
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe.config
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\bin\Debug\Minesweeper.pdb
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojAssemblyReference.cache
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
+C:\Users\StevenZuelke\Desktop\Computer Science\350Software\GitRepo\AustinsGit\AustinSoftDev350\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb

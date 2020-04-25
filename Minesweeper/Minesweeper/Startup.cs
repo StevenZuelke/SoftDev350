@@ -94,7 +94,6 @@ namespace Minesweeper
         
         static public char[,] Calculate(char[,] field)
         {
-            char q;
 
             for(int i = 0; i < field.GetLength(0); i++)
             {
@@ -113,6 +112,7 @@ namespace Minesweeper
 
             }//end for i
             return field;
+
         }
 
         //Method to get the number for certain index

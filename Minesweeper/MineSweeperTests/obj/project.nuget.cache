@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0AStfTIwn/f86FwkQo3sppzbuOL82WcdC7yTkVou7buFxEKnpQYcwaXmamPMjNKNB23dkf32zOAapM64YPktAg==",
+  "dgSpecHash": "xVdrP3OCWqAC8aJMU8QN9KukJQenZziiPJr+nOig1VFYvaBdZYhXoJ6VTBkHEiOiFy9+p4lE+LdzbfeFnbncoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\SoftDev350\\Minesweeper\\MineSweeperTests\\MineSweeperTests.csproj",
+  "projectFilePath": "C:\\Users\\StevenZuelke\\Desktop\\Computer Science\\350Software\\GitRepo\\AustinsGit\\AustinSoftDev350\\Minesweeper\\MineSweeperTests\\MineSweeperTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\StevenZuelke\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
     "C:\\Users\\StevenZuelke\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
