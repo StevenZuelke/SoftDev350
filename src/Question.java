@@ -18,9 +18,14 @@ public abstract class Question implements Serializable {
 
     //Constructor with Question and answer strings
 
-    public Question(String title, String[]Answers, String Correct){
+    public Question(String title, String[] answers, String correct){
 
-    }
+        Title = title;
+        Answers = answers;
+        Correct = correct;
+        Locked = false;
+
+    }//end constructor
 
     //Method to check if the answer is correct,
     //mark as locked if wrong, play the sound if correct/incorrect
@@ -34,16 +39,16 @@ public abstract class Question implements Serializable {
             correct = true;
             GoodSound.play();
 
-        }else{
+        }else{ //end correct if
 
             Locked = true;
             BadSound.play();
 
-        }
+        }// end incorrect if
 
         return correct;
 
-    }
+    }//end CheckCorrect
 
     //Following Methods are Getters for the private members
 
