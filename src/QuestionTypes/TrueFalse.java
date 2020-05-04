@@ -13,10 +13,7 @@ public class TrueFalse extends Question implements Serializable {
 
     public TrueFalse(String title, String correct){
 
-        Title = title;
-        Correct = correct;
-        String[] answers = { "A", "B" };
-        Answers = answers;
+        super(title, new String[]{"T", "F"}, correct);
 
     }//end constructor
 

@@ -11,16 +11,16 @@ import java.io.Serializable;
 
 public abstract class Question implements Serializable {
 
-    protected String Title;
-    protected String[] Answers;
-    protected String Correct;
+    private String Title;
+    private String[] Answers;
+    private String Correct;
     private File GoodSoundFile = new File("resources/Correct.wav");
     private File BadSoundFile = new File("resources/Incorrect.wav");
     private Boolean Locked;
 
     //Constructor with QuestionTypes.Question and answer strings
 
-    public Question(){
+    public Question(String title, String[] answers, String correct){
 
         Locked = false;
 
@@ -34,7 +34,7 @@ public abstract class Question implements Serializable {
         Boolean correct = false;
         File soundFile;
 
-        if(answer == Correct){
+        if(answer.toUpperCase() == Correct.toUpperCase()){
 
             correct = true;
             soundFile = GoodSoundFile;

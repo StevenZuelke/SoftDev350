@@ -1,7 +1,9 @@
 //Class to test all the functionality of Questions
 
+import QuestionTypes.MultipleChoice;
 import QuestionTypes.Question;
 import QuestionTypes.ShortAnswer;
+import QuestionTypes.TrueFalse;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,6 +36,72 @@ public class QuestionTests {
 
         //Act
         correct = question.CheckCorrect("3");
+
+        //Assert
+        assertEquals(false, correct);
+        assertEquals(true, question.GetLocked());
+
+    }
+
+    //Methods to Test TrueFalse
+
+    @Test
+    public void CheckTFAnswerWithSound_Correct(){
+
+        //Arrange
+        Question question = new TrueFalse("This is written in Java", "T");
+        Boolean correct;
+
+        //Act
+        correct = question.CheckCorrect("T");
+
+        //Assert
+        assertEquals(true, correct);
+        assertEquals(false, question.GetLocked());
+
+    }
+
+    @Test
+    public void CheckTFAnswerWithSound_Incorrect(){
+
+        //Arrange
+        Question question = new TrueFalse("This is written in Java", "T");
+        Boolean correct;
+
+        //Act
+        correct = question.CheckCorrect("F");
+
+        //Assert
+        assertEquals(false, correct);
+        assertEquals(true, question.GetLocked());
+
+    }
+
+    @Test
+    public void CheckMCAnswerWithSound_Correct(){
+
+        //Arrange
+        Question question = new MultipleChoice("Who wrote this test?", "A: Steve", "B: Austin", "C: Cody", "D: Tom", "A");
+        Boolean correct;
+
+        //Act
+        correct = question.CheckCorrect("A");
+
+        //Assert
+        assertEquals(true, correct);
+        assertEquals(false, question.GetLocked());
+
+    }
+
+    @Test
+    public void CheckMCAnswerWithSound_Incorrect(){
+
+        //Arrange
+        Question question = new MultipleChoice("Who wrote this test?", "A: Steve", "B: Austin", "C: Cody", "D: Tom", "A");
+        Boolean correct;
+
+        //Act
+        correct = question.CheckCorrect("B");
 
         //Assert
         assertEquals(false, correct);

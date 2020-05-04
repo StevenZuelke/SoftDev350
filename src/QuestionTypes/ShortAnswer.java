@@ -13,10 +13,7 @@ public class ShortAnswer extends Question implements Serializable {
 
     public ShortAnswer(String title, String correct){
 
-        Title = title;
-        Correct = correct;
-        String[] answers = {};
-        Answers = answers;
+        super(title, new String[]{}, correct);
 
     }//end constructor
 

@@ -13,11 +13,7 @@ public class MultipleChoice extends Question implements Serializable {
 
     public MultipleChoice(String title, String answerA, String answerB, String answerC, String answerD, String correct){
 
-        Title = title;
-        Correct = correct;
-        String[] answers = { answerA, answerB, answerC, answerD };
-        Answers = answers;
-
+        super(title, new String[]{answerA, answerB, answerC, answerD}, correct);
 
     }//end constructor
 
