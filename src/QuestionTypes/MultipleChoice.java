@@ -1,5 +1,5 @@
 /* This class is the constructor for a multiple choice question
-which extends the Abstract Question Class
+which extends the Abstract QuestionTypes.Question Class
 Author: Steven Zuelke
  */
 
@@ -13,8 +13,11 @@ public class MultipleChoice extends Question implements Serializable {
 
     public MultipleChoice(String title, String answerA, String answerB, String answerC, String answerD, String correct){
 
+        Title = title;
+        Correct = correct;
         String[] answers = { answerA, answerB, answerC, answerD };
-        super(title, answers, correct);
+        Answers = answers;
+
 
     }//end constructor
 

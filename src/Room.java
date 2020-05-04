@@ -3,11 +3,13 @@ different questions for the room, and occupied status
 Author: Steven Zuelke
  */
 
+import QuestionTypes.Question;
+
 import java.io.Serializable;
 
 public class Room implements Serializable {
 
-    //Question[0] is up and increments Clockwise
+    //QuestionTypes.Question[0] is up and increments Clockwise
     private Question[] Questions;
     private Boolean Occupied;
 

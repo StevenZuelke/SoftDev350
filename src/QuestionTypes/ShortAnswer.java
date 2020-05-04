@@ -1,5 +1,5 @@
 /* This class is the constructor for a short answer question
-which extends the Abstract Question Class
+which extends the Abstract QuestionTypes.Question Class
 Author: Steven Zuelke
  */
 
@@ -13,8 +13,10 @@ public class ShortAnswer extends Question implements Serializable {
 
     public ShortAnswer(String title, String correct){
 
+        Title = title;
+        Correct = correct;
         String[] answers = {};
-        super(title, answers, correct);
+        Answers = answers;
 
     }//end constructor
 
