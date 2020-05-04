@@ -9,11 +9,7 @@ public class Maze implements Serializable {
 
     Room[][] Rooms;
 
-    //Method to set up all rooms for beginning of game
 
-    public void SetupRooms(){
-
-    }//end SetupRooms
 
     //Method to try and move the player to a new room
     //Index parameter at 0 is UP and increments Clockwise
@@ -23,5 +19,11 @@ public class Maze implements Serializable {
 
         return moved;
     }
+
+    //Method to set up all rooms for beginning of game
+
+    public void SetupRooms(){
+
+    }//end SetupRooms
 
 }

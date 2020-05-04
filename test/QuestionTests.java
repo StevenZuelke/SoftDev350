@@ -7,7 +7,7 @@ import QuestionTypes.TrueFalse;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class QuestionTests {
+class QuestionTests {
 
     //Method tests ShortAnswer
 
@@ -25,7 +25,7 @@ public class QuestionTests {
         assertEquals(true, correct);
         assertEquals(false, question.GetLocked());
 
-    }
+    }//end ShortAnswer Correct
 
     @Test
     public void CheckShortAnswerWithSound_Incorrect(){
@@ -41,7 +41,7 @@ public class QuestionTests {
         assertEquals(false, correct);
         assertEquals(true, question.GetLocked());
 
-    }
+    }//End ShortAnswer Incorrect
 
     //Methods to Test TrueFalse
 
@@ -59,7 +59,7 @@ public class QuestionTests {
         assertEquals(true, correct);
         assertEquals(false, question.GetLocked());
 
-    }
+    }//end TF Correct
 
     @Test
     public void CheckTFAnswerWithSound_Incorrect(){
@@ -75,7 +75,7 @@ public class QuestionTests {
         assertEquals(false, correct);
         assertEquals(true, question.GetLocked());
 
-    }
+    }//end TF Incorrect
 
     @Test
     public void CheckMCAnswerWithSound_Correct(){
@@ -91,7 +91,7 @@ public class QuestionTests {
         assertEquals(true, correct);
         assertEquals(false, question.GetLocked());
 
-    }
+    }//end MC correct
 
     @Test
     public void CheckMCAnswerWithSound_Incorrect(){
@@ -107,6 +107,6 @@ public class QuestionTests {
         assertEquals(false, correct);
         assertEquals(true, question.GetLocked());
 
-    }
+    }//end MC Incorrect
 
 }

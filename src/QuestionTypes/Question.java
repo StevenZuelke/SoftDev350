@@ -1,6 +1,8 @@
 /* This class will be the abstract QuestionTypes.Question
 This will hold Title, possible and correct answers
 The sound files, And whether the question is completed
+Acts more as a door than just the question
+Author: Steven Zuelke
  */
 
 package QuestionTypes;
@@ -22,6 +24,9 @@ public abstract class Question implements Serializable {
 
     public Question(String title, String[] answers, String correct){
 
+        Title = title;
+        Answers = answers;
+        Correct = correct;
         Locked = false;
 
     }//end constructor
@@ -34,7 +39,7 @@ public abstract class Question implements Serializable {
         Boolean correct = false;
         File soundFile;
 
-        if(answer.toUpperCase() == Correct.toUpperCase()){
+        if(answer == Correct){
 
             correct = true;
             soundFile = GoodSoundFile;
