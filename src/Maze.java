@@ -44,21 +44,46 @@ public class Maze implements Serializable {
                 Boolean occupied = false;
                 //for each room fill appropriate question list
                 //Top
-                if(i != 0) questions[0] = PickQuestion(used);
+                if(i != 0){
+
+                    questions[0] = PickQuestion(used);
+                    used.add(questions[0]);
+
+                }//end if 0
+
                 else questions[0] = null;
                 //Right
-                if(j != Rooms[0].length - 1) questions[1] = PickQuestion(used);
+                if(j != Rooms[0].length - 1){
+
+                    questions[1] = PickQuestion(used);
+                    used.add(questions[1]);
+
+                }//end if 1
+
                 else questions[1] = null;
                 //Bottom
-                if(i != Rooms.length - 1) questions[2] = PickQuestion(used);
+                if(i != Rooms.length - 1){
+
+                    questions[2] = PickQuestion(used);
+                    used.add(questions[2]);
+
+                }//end if 2
+
                 else questions[2] = null;
                 //Left
-                if(j != 0) questions[3] = PickQuestion(used);
+                if(j != 0){
+
+                    questions[3] = PickQuestion(used);
+                    used.add(questions[3]);
+
+                }//end if 3
+
                 else questions[3] = null;
 
                 //Put character in top left
                 if(i == 0 && j == 0) occupied = true;
                 Rooms[i][j] = new Room(questions, occupied);
+
             }//end for j
 
         }//end for i
