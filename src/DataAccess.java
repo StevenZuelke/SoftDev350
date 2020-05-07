@@ -47,6 +47,52 @@ public class DataAccess {
 
     }//end AddMC
 
+    public void AddSA(String title, String correct){
+
+        Connection connection = null;
+        try{
+
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:trivia.db");
+            Statement statement = connection.createStatement();
+            String sql = "Insert into ShortAnswer (Title, Correct)" +
+                    "Values ('"+title+"', '"+correct+"');";
+            statement.executeUpdate(sql);
+            statement.close();
+            connection.close();
+            ReadQuestions();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }//end catch
+
+    }//end AddSA
+
+    public void AddTF(String title, String correct){
+
+        Connection connection = null;
+        try{
+
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:trivia.db");
+            Statement statement = connection.createStatement();
+            String sql = "Insert into TrueFalse (Title, Correct)" +
+                    "Values ('"+title+"', '"+correct+"');";
+            statement.executeUpdate(sql);
+            statement.close();
+            connection.close();
+            ReadQuestions();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }//end catch
+
+    }//end AddTF
+
     //Getter for the Questions
 
     public ArrayList<Question> GetQuestions(){

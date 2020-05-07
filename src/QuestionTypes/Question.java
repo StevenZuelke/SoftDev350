@@ -26,7 +26,7 @@ public abstract class Question implements Serializable {
 
         Title = title;
         Answers = answers;
-        Correct = correct;
+        Correct = correct.toUpperCase();
         Locked = false;
 
     }//end constructor
@@ -38,6 +38,7 @@ public abstract class Question implements Serializable {
 
         Boolean correct = false;
         File soundFile;
+        answer = answer.toUpperCase();
 
         if(answer == Correct){
 
@@ -72,6 +73,8 @@ public abstract class Question implements Serializable {
     //Following Methods are Getters for the private members
 
     public String[] GetAnswers(){ return Answers; }
+
+    public String GetCorrect(){ return Correct; }
 
     public Boolean GetLocked(){ return Locked; }
 

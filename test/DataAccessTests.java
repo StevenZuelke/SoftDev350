@@ -53,6 +53,50 @@ class DataAccessTests {
     }//end AddMC
 
     @Test
+    public void AddShortAnswerTest(){
+
+        //Arrange
+        int questionBefore;
+        int questionAfter;
+        DataAccess dataAccess = new DataAccess();
+        questionBefore = dataAccess.GetQuestions().size();
+
+        //Act
+        String title = "A is the answer";
+        String correct = "a";
+        dataAccess.AddSA(title, correct);
+        questionAfter = dataAccess.GetQuestions().size();
+
+        //Assert
+        //checks size because it doesn't read in order so the new question won't be last
+        assertEquals(questionBefore + 1, questionAfter);
+        dataAccess.RemoveQuestion(title);
+
+    }//end AddSA
+
+    @Test
+    public void AddTrueFalseTest(){
+
+        //Arrange
+        int questionBefore;
+        int questionAfter;
+        DataAccess dataAccess = new DataAccess();
+        questionBefore = dataAccess.GetQuestions().size();
+
+        //Act
+        String title = "T is the answer";
+        String correct = "T";
+        dataAccess.AddSA(title, correct);
+        questionAfter = dataAccess.GetQuestions().size();
+
+        //Assert
+        //checks size because it doesn't read in order so the new question won't be last
+        assertEquals(questionBefore + 1, questionAfter);
+        dataAccess.RemoveQuestion(title);
+
+    }//end AddSA
+
+    @Test
     public void RemoveQuestionTest() throws InterruptedException {
 
         //Arrange

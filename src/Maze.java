@@ -11,6 +11,17 @@ import java.util.ArrayList;
 public class Maze implements Serializable {
 
     Room[][] Rooms;
+    DataAccess DataAccess;
+
+    //Constructor
+
+    public Maze(){
+
+        Rooms = new Room[3][3];
+        SetupRooms();
+        DataAccess = new DataAccess();
+
+    }//end Constructor
 
     //Method to try and move the player to a new room
     //Index parameter at 0 is UP and increments Clockwise
