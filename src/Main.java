@@ -130,7 +130,7 @@ public class Main {
 
         System.out.println("To see Multiple Choice Enter 1\n" +
                 "To see True/False Enter 2\n" +
-                "To see Short Answer Enter 3" +
+                "To see Short Answer Enter 3\n" +
                 "To return to Database Menu Enter 4");
         ValidInput.clear();
         ValidInput.add("1");
@@ -225,7 +225,7 @@ public class Main {
 
         String input;
 
-        System.out.println("Welcome!\n " +
+        System.out.println("Welcome!\n" +
                            "Enter 1 to play Trivia Maze\n" +
                            "Enter 2 to access the Database");
         ValidInput.clear();
@@ -249,7 +249,6 @@ public class Main {
 
     private static String ReadInput(){
 
-
         Boolean invalid = true;
         String input = "";
 
@@ -265,10 +264,8 @@ public class Main {
             System.out.print(")\n");
             input = Scan.nextLine().toUpperCase();
             for(int i = 0; i < ValidInput.size(); i++){
-
                 String compare = ValidInput.get(i).toUpperCase();
-                if(input == compare){
-
+                if(input.equals(compare)){
                     return input;
 
                 }//end if
