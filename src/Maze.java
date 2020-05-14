@@ -7,6 +7,7 @@ import QuestionTypes.Question;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Maze implements Serializable {
 
@@ -33,10 +34,18 @@ public class Maze implements Serializable {
     }
 
     //Method to Pick a question from database that isn't already in use
-    //NOT DONE WAITING ON DATABASE
+    //Waiting on questions in the database
     private Question PickQuestion(ArrayList<Question> used){
 
         Question question = null;
+        ArrayList<Question> allQuestions = DataAccess.GetQuestions();
+        do{
+
+            int index = (new Random()).nextInt() % allQuestions.size();
+            question = allQuestions.get(index);
+
+        }while(allQuestions.contains(question));
+        //end do while
 
         return question;
 
