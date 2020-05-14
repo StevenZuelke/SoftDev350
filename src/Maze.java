@@ -28,10 +28,22 @@ public class Maze implements Serializable {
     //Index parameter at 0 is UP and increments Clockwise
 
     public Boolean ChangeRooms(int index){
+
         Boolean moved = false;
 
         return moved;
-    }
+
+    }//end ChangeRooms
+
+    //Method to see if the character has won the game after any move
+
+    private boolean CheckWin(){
+
+        Boolean won = false;
+        if(Rooms[Rooms.length - 1][Rooms[0].length - 1].GetOccupied()) won = true;
+        return won;
+
+    }//end CheckWin
 
     //Method to Pick a question from database that isn't already in use
     //Waiting on questions in the database
@@ -49,7 +61,7 @@ public class Maze implements Serializable {
 
         return question;
 
-    }
+    }//end PickQuestion
 
     //Method to set up all rooms for beginning of game
 
