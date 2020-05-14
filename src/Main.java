@@ -264,6 +264,7 @@ public class Main {
             System.out.print(")\n");
             input = Scan.nextLine().toUpperCase();
             for(int i = 0; i < ValidInput.size(); i++){
+
                 String compare = ValidInput.get(i).toUpperCase();
                 if(input.equals(compare)){
                     return input;
