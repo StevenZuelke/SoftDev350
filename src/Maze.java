@@ -20,7 +20,7 @@ public class Maze implements Serializable {
     public Maze(){
 
         Rooms = new Room[3][3];
-        SetupRooms();
+        //SetupRooms();
         DataAccess = new DataAccess();
 
     }//end Constructor
@@ -40,7 +40,7 @@ public class Maze implements Serializable {
     //Recursively exhaust every path, and if no possible path contains the end,
     //then you lost and returns true
 
-    private boolean CheckLoss(int r, int c, ArrayList<Point2D> previousRooms){
+    public boolean CheckLoss(int r, int c, ArrayList<Point2D> previousRooms){
 
         boolean loss = false;
 
@@ -94,7 +94,7 @@ public class Maze implements Serializable {
 
     //Method to see if the character has won the game after any move
 
-    private boolean CheckWin(){
+    public boolean CheckWin(){
 
         Boolean won = false;
         if(Rooms[Rooms.length - 1][Rooms[0].length - 1].GetOccupied()) won = true;
