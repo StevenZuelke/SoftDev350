@@ -107,7 +107,7 @@ public class DataAccess {
 
         Connection connection = null;
         try{
-
+            Questions.clear();
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:trivia.db");
             Statement statement = connection.createStatement();
