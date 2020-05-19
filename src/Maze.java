@@ -20,8 +20,9 @@ public class Maze implements Serializable {
     public Maze(){
 
         Rooms = new Room[3][3];
-        //SetupRooms();
         DataAccess = new DataAccess();
+        SetupRooms();
+
 
     }//end Constructor
 
@@ -30,7 +31,41 @@ public class Maze implements Serializable {
 
     public Boolean ChangeRooms(int index){
 
-        Boolean moved = false;
+        Boolean moved = true;
+        Point2D currentRoom = new Point2D(0, 0);
+
+        for(int i = 0; i < Rooms.length; i++){
+
+            for(int j = 0; j < Rooms[0].length; j++){
+
+                if(Rooms[i][j].GetOccupied()) currentRoom = new Point2D(i, j);
+
+            }//end for j
+
+        }//end for i
+
+        if((currentRoom.getX() == 0 && index == 3) ||
+                (currentRoom.getY() == 0 && index == 0) ||
+                (currentRoom.getX() == Rooms.length - 1 && index == 1) ||
+                (currentRoom.getY() == Rooms.length - 1 && index == 2)) return false;
+        //end if out of bounds
+
+        //Switch vacancies in rooms
+        Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].SetOccupied(false);
+        switch(index){
+            case 0:
+                Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].SetOccupied(true);
+                break;
+            case 1:
+                Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].SetOccupied(true);
+                break;
+            case 2:
+                Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].SetOccupied(true);
+                break;
+            case 3:
+                Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].SetOccupied(true);
+                break;
+        }//end switch index
 
         return moved;
 
@@ -106,15 +141,16 @@ public class Maze implements Serializable {
     //Waiting on questions in the database
     private Question PickQuestion(ArrayList<Question> used){
 
-        Question question = null;
-        ArrayList<Question> allQuestions = DataAccess.GetQuestions();
-        do{
+        Question question;
 
-            int index = (new Random()).nextInt() % allQuestions.size();
+        ArrayList<Question> allQuestions = DataAccess.GetQuestions();
+        question = allQuestions.get(0);
+        while(used.contains(question)){
+
+            int index = Math.abs((new Random()).nextInt() % allQuestions.size());
             question = allQuestions.get(index);
 
-        }while(allQuestions.contains(question));
-        //end do while
+        }//end while
 
         return question;
 
@@ -133,7 +169,7 @@ public class Maze implements Serializable {
                 Boolean occupied = false;
                 //for each room fill appropriate question list
                 //Top
-                if(i != 0){
+                if(j != 0){
 
                     questions[0] = PickQuestion(used);
                     used.add(questions[0]);
@@ -142,7 +178,7 @@ public class Maze implements Serializable {
 
                 else questions[0] = null;
                 //Right
-                if(j != Rooms[0].length - 1){
+                if(i != Rooms[0].length - 1){
 
                     questions[1] = PickQuestion(used);
                     used.add(questions[1]);
@@ -151,7 +187,7 @@ public class Maze implements Serializable {
 
                 else questions[1] = null;
                 //Bottom
-                if(i != Rooms.length - 1){
+                if(j != Rooms.length - 1){
 
                     questions[2] = PickQuestion(used);
                     used.add(questions[2]);
@@ -160,7 +196,7 @@ public class Maze implements Serializable {
 
                 else questions[2] = null;
                 //Left
-                if(j != 0){
+                if(i != 0){
 
                     questions[3] = PickQuestion(used);
                     used.add(questions[3]);

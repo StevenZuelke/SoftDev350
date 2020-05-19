@@ -5,6 +5,7 @@ Author: Steven Zuelke
 
 import QuestionTypes.MultipleChoice;
 import QuestionTypes.Question;
+import QuestionTypes.ShortAnswer;
 import QuestionTypes.TrueFalse;
 
 import java.sql.*;
@@ -147,7 +148,7 @@ public class DataAccess {
 
                 String title = resultSet.getString("Title");
                 String correct = resultSet.getString("Correct");
-                Questions.add(new TrueFalse(title, correct));
+                Questions.add(new ShortAnswer(title, correct));
 
             }//end SA while
 

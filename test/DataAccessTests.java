@@ -23,6 +23,7 @@ class DataAccessTests {
 
         //Assert
         //If no exception is thrown this passes
+        int i = 0;
 
     }//end ReadQuestionsTest
 
