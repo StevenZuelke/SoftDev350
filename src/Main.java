@@ -4,6 +4,7 @@ Author: Steven Zuelke
 
 import QuestionTypes.Question;
 import QuestionTypes.ShortAnswer;
+import javafx.geometry.Point2D;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
@@ -176,6 +177,14 @@ public class Main {
 
     }//end ListQuestions
 
+    //Method to Load a new game from a file, returns true if successful otherwise false
+
+    private static boolean LoadGame(){
+
+
+
+    }//end LoadGame
+
     //Main Menu for the Database (List, Add, Remove)
 
     public static void MainDataMenu(){
@@ -233,7 +242,16 @@ public class Main {
                 NewGame();
                 break;
             case "2":
-                LoadGame();
+                if(!LoadGame()) {
+
+                    System.out.println("Load failed!");
+
+                }else{//end if Load fail
+
+                    PlayGame();
+
+                }//end else
+
                 break;
             case "3":
                 MainMenu();
@@ -270,6 +288,8 @@ public class Main {
 
     }//end MainMenu
 
+    //Method to start a new game and start the game
+
     private static void NewGame(){
 
         Maze = new Maze();
@@ -277,6 +297,27 @@ public class Main {
         PlayGame();
 
     }//end newGame
+
+    //Method to play the entire game from an enstanciated maze
+
+    private static void PlayGame(){
+
+        boolean gameOver = false;
+
+        System.out.println("Welcome to the Trivia Game!");
+        while(!gameOver){
+
+            TakeTurn();
+            if(Maze.CheckLoss(0,0, new ArrayList<Point2D>()) ||
+                Maze.CheckWin()){
+
+                gameOver = true;
+
+            }//end if games over
+
+        }//end while game not over
+
+    }//end PlayGame
 
     //Method to read valid input with possible answers
 
@@ -349,5 +390,14 @@ public class Main {
         RemoveQuestions();//continue removing questions
 
     }//end RemoveQuestions
+
+    //Method to take a single turn by the player
+
+    private void TakeTurn(){
+
+        System.out.println("You are in room: " + Maze.GetRoom().getX() + ", " + Maze.GetRoom().getY());
+        DisplayRoom();
+
+    }//end Take Turn
 
 }//end class

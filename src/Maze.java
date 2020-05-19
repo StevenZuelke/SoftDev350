@@ -32,17 +32,7 @@ public class Maze implements Serializable {
     public Boolean ChangeRooms(int index){
 
         Boolean moved = true;
-        Point2D currentRoom = new Point2D(0, 0);
-
-        for(int i = 0; i < Rooms.length; i++){
-
-            for(int j = 0; j < Rooms[0].length; j++){
-
-                if(Rooms[i][j].GetOccupied()) currentRoom = new Point2D(i, j);
-
-            }//end for j
-
-        }//end for i
+        Point2D currentRoom = GetRoom();
 
         if((currentRoom.getX() == 0 && index == 3) ||
                 (currentRoom.getY() == 0 && index == 0) ||
@@ -137,8 +127,27 @@ public class Maze implements Serializable {
 
     }//end CheckWin
 
+    //Method to return the current room of the player with Point2D
+
+    public Point2D GetRoom(){
+
+        Point2D currentRoom = new Point2D(0, 0);
+
+        for(int i = 0; i < Rooms.length; i++){
+
+            for(int j = 0; j < Rooms[0].length; j++){
+
+                if(Rooms[i][j].GetOccupied()) currentRoom = new Point2D(i, j);
+
+            }//end for j
+
+        }//end for i
+
+        return currentRoom;
+    }//end GetRoom
+
     //Method to Pick a question from database that isn't already in use
-    //Waiting on questions in the database
+
     private Question PickQuestion(ArrayList<Question> used){
 
         Question question;
