@@ -4,6 +4,8 @@ Author: Steven Zuelke
 
 import QuestionTypes.Question;
 import QuestionTypes.ShortAnswer;
+
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -214,7 +216,30 @@ public class Main {
 
     public static void MainGameMenu(){
 
+        String input;
 
+        System.out.println("TRIVIA GAME");
+        System.out.println("To start a new game Enter 1\n" +
+                "To load an existing game file Enter 2\n" +
+                "To return to Main Menu Enter 3");
+        ValidInput.clear();
+        ValidInput.add("1");
+        ValidInput.add("2");
+        ValidInput.add("3");
+        input = ReadInput();
+        switch(input){
+
+            case "1":
+                NewGame();
+                break;
+            case "2":
+                LoadGame();
+                break;
+            case "3":
+                MainMenu();
+                break;
+
+        }//end switch input
 
     }//end MainGameMenu
 
@@ -244,6 +269,14 @@ public class Main {
         }//end switch input
 
     }//end MainMenu
+
+    private static void NewGame(){
+
+        Maze = new Maze();
+        System.out.println("You started a new game!");
+        PlayGame();
+
+    }//end newGame
 
     //Method to read valid input with possible answers
 
@@ -283,7 +316,37 @@ public class Main {
 
     private static void RemoveQuestions(){
 
+        String input;
+        String title, correct;
 
+        System.out.println("To Remove a question: Enter the title\n" +
+                "To return to Database Menu Enter 1\n");
+        title = Scan.nextLine();
+        if(title.equals("1")){
+
+            MainDataMenu();
+            return;
+
+        }//end if 1
+
+        //Confirm question before committing
+        System.out.println("Confirm your question:");
+        System.out.println(title);
+        System.out.println("To confirm Enter 1\n" +
+                "To retry Enter 2");
+        ValidInput.clear();
+        ValidInput.add("1");
+        ValidInput.add("2");
+        input = ReadInput();
+        if(input == "2"){
+
+            RemoveQuestions();
+            return;
+
+        }//end if input ==2
+
+        Maze.DataAccess.RemoveQuestion(title);
+        RemoveQuestions();//continue removing questions
 
     }//end RemoveQuestions
 
