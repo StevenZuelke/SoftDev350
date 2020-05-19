@@ -4,6 +4,9 @@ Author: Steven Zuelke
 
 import QuestionTypes.Question;
 import QuestionTypes.ShortAnswer;
+import javafx.geometry.Point2D;
+
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -120,6 +123,14 @@ public class Main {
 
     }//end AddQuestions
 
+    //Method to display the room to console
+
+    private static void DisplayRoom(){
+
+
+
+    }//end DisplayRoom
+
     //Method to list all questions within data program
 
     private static void ListQuestions(){
@@ -174,6 +185,16 @@ public class Main {
 
     }//end ListQuestions
 
+    //Method to Load a new game from a file, returns true if successful otherwise false
+
+    private static boolean LoadGame(){
+
+        boolean loaded = false;
+
+        return loaded;
+
+    }//end LoadGame
+
     //Main Menu for the Database (List, Add, Remove)
 
     public static void MainDataMenu(){
@@ -214,7 +235,39 @@ public class Main {
 
     public static void MainGameMenu(){
 
+        String input;
 
+        System.out.println("TRIVIA GAME");
+        System.out.println("To start a new game Enter 1\n" +
+                "To load an existing game file Enter 2\n" +
+                "To return to Main Menu Enter 3");
+        ValidInput.clear();
+        ValidInput.add("1");
+        ValidInput.add("2");
+        ValidInput.add("3");
+        input = ReadInput();
+        switch(input){
+
+            case "1":
+                NewGame();
+                break;
+            case "2":
+                if(!LoadGame()) {
+
+                    System.out.println("Load failed!");
+
+                }else{//end if Load fail
+
+                    PlayGame();
+
+                }//end else
+
+                break;
+            case "3":
+                MainMenu();
+                break;
+
+        }//end switch input
 
     }//end MainGameMenu
 
@@ -244,6 +297,45 @@ public class Main {
         }//end switch input
 
     }//end MainMenu
+
+    //Method to start a new game and start the game
+
+    private static void NewGame(){
+
+        Maze = new Maze();
+        System.out.println("You started a new game!");
+        PlayGame();
+
+    }//end newGame
+
+    //Method to play the entire game from an enstanciated maze
+
+    private static void PlayGame(){
+
+        boolean gameOver = false;
+
+        System.out.println("Welcome to the Trivia Game!");
+        while(!gameOver){
+
+            TakeTurn();
+            if(Maze.CheckLoss(0,0, new ArrayList<Point2D>()) ||
+                Maze.CheckWin()){
+
+                gameOver = true;
+
+            }//end if games over
+
+        }//end while game not over
+
+    }//end PlayGame
+
+    //Method to check if player wants to save before quitting
+
+    private static void QuitGame(){
+
+
+
+    }//method to QuitGame
 
     //Method to read valid input with possible answers
 
@@ -283,8 +375,86 @@ public class Main {
 
     private static void RemoveQuestions(){
 
+        String input;
+        String title, correct;
 
+        System.out.println("To Remove a question: Enter the title\n" +
+                "To return to Database Menu Enter 1\n");
+        title = Scan.nextLine();
+        if(title.equals("1")){
+
+            MainDataMenu();
+            return;
+
+        }//end if 1
+
+        //Confirm question before committing
+        System.out.println("Confirm your question:");
+        System.out.println(title);
+        System.out.println("To confirm Enter 1\n" +
+                "To retry Enter 2");
+        ValidInput.clear();
+        ValidInput.add("1");
+        ValidInput.add("2");
+        input = ReadInput();
+        if(input == "2"){
+
+            RemoveQuestions();
+            return;
+
+        }//end if input ==2
+
+        Maze.DataAccess.RemoveQuestion(title);
+        RemoveQuestions();//continue removing questions
 
     }//end RemoveQuestions
+
+    //Method to save the game
+
+    private static void SaveGame(){
+
+
+
+    }//end SaveGame
+
+    //Method to take a single turn by the player
+
+    private static void TakeTurn(){
+
+        String input = "";
+        boolean valid = false;
+
+        while(!valid){
+
+            System.out.println("You are in room: " + Maze.GetRoom().getX() + ", " + Maze.GetRoom().getY());
+            DisplayRoom();
+            System.out.println("Which direction do you want to go?");
+            System.out.println("Enter S to save game");
+            System.out.println("Enter Q to quit game");
+            ValidInput.clear();
+            ValidInput.add("1");
+            ValidInput.add("2");
+            ValidInput.add("0");
+            ValidInput.add("3");
+            ValidInput.add("Q");
+            ValidInput.add("S");
+            input = ReadInput();
+            switch(input){
+
+                case "S":
+                    SaveGame();
+                    break;
+                case "Q":
+                    QuitGame();
+                    return;
+                default:
+                    valid = Maze.ChangeRooms(Integer.parseInt(input));
+                    break;
+
+            }//end switch input
+
+        }//end while not valid
+
+    }//end Take Turn
 
 }//end class
