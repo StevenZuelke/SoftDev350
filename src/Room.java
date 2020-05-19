@@ -26,6 +26,8 @@ public class Room implements Serializable {
 
     public Boolean GetOccupied(){ return Occupied; }
 
+    public void SetOccupied(Boolean bool){ Occupied = bool; }
+
     //Returns null if No question at that index
 
     public Question GetQuestion(int index){

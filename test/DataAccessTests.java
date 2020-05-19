@@ -44,11 +44,12 @@ class DataAccessTests {
         String correct = "a";
         dataAccess.AddMC(title, a, b, c, d, correct);
         questionAfter = dataAccess.GetQuestions().size();
+        dataAccess.RemoveQuestion(title);
 
         //Assert
         //checks size because it doesn't read in order so the new question won't be last
         assertEquals(questionBefore + 1, questionAfter);
-        dataAccess.RemoveQuestion(title);
+
 
     }//end AddMC
 
@@ -66,11 +67,12 @@ class DataAccessTests {
         String correct = "a";
         dataAccess.AddSA(title, correct);
         questionAfter = dataAccess.GetQuestions().size();
+        dataAccess.RemoveQuestion(title);
 
         //Assert
         //checks size because it doesn't read in order so the new question won't be last
         assertEquals(questionBefore + 1, questionAfter);
-        dataAccess.RemoveQuestion(title);
+
 
     }//end AddSA
 
@@ -86,13 +88,14 @@ class DataAccessTests {
         //Act
         String title = "T is the answer";
         String correct = "T";
-        dataAccess.AddSA(title, correct);
+        dataAccess.AddTF(title, correct);
         questionAfter = dataAccess.GetQuestions().size();
+        dataAccess.RemoveQuestion(title);
 
         //Assert
         //checks size because it doesn't read in order so the new question won't be last
         assertEquals(questionBefore + 1, questionAfter);
-        dataAccess.RemoveQuestion(title);
+
 
     }//end AddSA
 

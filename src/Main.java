@@ -183,7 +183,7 @@ public class Main {
         System.out.println("DATABASE");
         System.out.println("To see existing questions Enter 1\n" +
                            "To add new questions Enter 2\n" +
-                           "To remove questions Enter 3" +
+                           "To remove questions Enter 3\n" +
                            "To return to Main Menu Enter 4");
         ValidInput.clear();
         ValidInput.add("1");
@@ -264,6 +264,7 @@ public class Main {
             System.out.print(")\n");
             input = Scan.nextLine().toUpperCase();
             for(int i = 0; i < ValidInput.size(); i++){
+
                 String compare = ValidInput.get(i).toUpperCase();
                 if(input.equals(compare)){
                     return input;
