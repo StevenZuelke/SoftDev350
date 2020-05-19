@@ -123,6 +123,14 @@ public class Main {
 
     }//end AddQuestions
 
+    //Method to display the room to console
+
+    private static void DisplayRoom(){
+
+
+
+    }//end DisplayRoom
+
     //Method to list all questions within data program
 
     private static void ListQuestions(){
@@ -181,7 +189,9 @@ public class Main {
 
     private static boolean LoadGame(){
 
+        boolean loaded = false;
 
+        return loaded;
 
     }//end LoadGame
 
@@ -319,6 +329,14 @@ public class Main {
 
     }//end PlayGame
 
+    //Method to check if player wants to save before quitting
+
+    private static void QuitGame(){
+
+
+
+    }//method to QuitGame
+
     //Method to read valid input with possible answers
 
     private static String ReadInput(){
@@ -391,12 +409,51 @@ public class Main {
 
     }//end RemoveQuestions
 
+    //Method to save the game
+
+    private static void SaveGame(){
+
+
+
+    }//end SaveGame
+
     //Method to take a single turn by the player
 
-    private void TakeTurn(){
+    private static void TakeTurn(){
 
-        System.out.println("You are in room: " + Maze.GetRoom().getX() + ", " + Maze.GetRoom().getY());
-        DisplayRoom();
+        String input = "";
+        boolean valid = false;
+
+        while(!valid){
+
+            System.out.println("You are in room: " + Maze.GetRoom().getX() + ", " + Maze.GetRoom().getY());
+            DisplayRoom();
+            System.out.println("Which direction do you want to go?");
+            System.out.println("Enter S to save game");
+            System.out.println("Enter Q to quit game");
+            ValidInput.clear();
+            ValidInput.add("1");
+            ValidInput.add("2");
+            ValidInput.add("0");
+            ValidInput.add("3");
+            ValidInput.add("Q");
+            ValidInput.add("S");
+            input = ReadInput();
+            switch(input){
+
+                case "S":
+                    SaveGame();
+                    break;
+                case "Q":
+                    QuitGame();
+                    return;
+                default:
+                    valid = Maze.ChangeRooms(Integer.parseInt(input));
+                    break;
+
+            }//end switch input
+
+        }//end while not valid
 
     }//end Take Turn
 
