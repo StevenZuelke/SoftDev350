@@ -52,10 +52,33 @@ public class Maze implements Serializable {
         input = (new Scanner(System.in)).nextLine();
         correct = Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction).CheckCorrect(input);
         if(correct) System.out.println("Correct!");
-        else System.out.println("Incorrect!");
+        else {
+            System.out.println("Incorrect!");
+            lockDoor(direction);
+        }
         return correct;
 
     }//end AskQuestion
+
+    private void lockDoor(int direction) {
+        Point2D currentRoom = GetRoom();
+        if(direction == 0) {
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].setBottomLocked(true);
+            System.out.println("The room above you is now locked forever :(");
+        }
+        if(direction == 1) {
+            Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].setRightLocked(true);
+            System.out.println("The room to the right of you is now locked forever :(");
+        }
+        if(direction == 2) {
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].setTopLocked(true);
+            System.out.println("The room below you is now locked forever :(");
+        }
+        if(direction == 3) {
+            Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].setLeftLocked(true);
+            System.out.println("The room to the left of you is now locked forever :(");
+        }
+    }
 
     //Method to try and move the player to a new room
     //Index parameter at 0 is UP and increments Clockwise
@@ -75,22 +98,22 @@ public class Maze implements Serializable {
 
         switch(index){
             case 0:
-                if(AskQuestion(0))
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].getBottomLocked() && AskQuestion(0))
                 Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].SetOccupied(true);
                 else return false;
                 break;
             case 1:
-                if(AskQuestion(1))
+                if(!Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].getRightLocked() && AskQuestion(1))
                 Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].SetOccupied(true);
                 else return false;
                 break;
             case 2:
-                if(AskQuestion(2))
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].getTopLocked() && AskQuestion(2))
                 Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].SetOccupied(true);
                 else return false;
                 break;
             case 3:
-                if(AskQuestion(3))
+                if(!Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].getLeftLocked() && AskQuestion(3))
                 Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].SetOccupied(true);
                 else return false;
                 break;

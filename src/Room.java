@@ -12,6 +12,10 @@ public class Room implements Serializable {
     //QuestionTypes.Question[0] is up and increments Clockwise
     private Question[] Questions;
     private Boolean Occupied;
+    private boolean topLocked = false;
+    private boolean bottomLocked = false;
+    private boolean leftLocked = false;
+    private boolean rightLocked = false;
 
     //Constructor
 
@@ -41,5 +45,49 @@ public class Room implements Serializable {
         return null;
 
     }//end GetQuestion
+
+    public boolean getTopLocked() {
+        if(topLocked) {
+            System.out.println("Sorry, this door is locked");
+        }
+        return topLocked;
+    }
+
+    public boolean getBottomLocked() {
+        if(bottomLocked) {
+            System.out.println("Sorry, this door is locked");
+        }
+        return bottomLocked;
+    }
+
+    public boolean getLeftLocked() {
+        if(leftLocked) {
+            System.out.println("Sorry, this door is locked");
+        }
+        return leftLocked;
+    }
+
+    public boolean getRightLocked() {
+        if(rightLocked) {
+            System.out.println("Sorry, this door is locked");
+        }
+        return rightLocked;
+    }
+
+    public void setBottomLocked(boolean isLocked) {
+        bottomLocked = isLocked;
+    }
+
+    public void setTopLocked(boolean isLocked) {
+        topLocked = isLocked;
+    }
+
+    public void setLeftLocked(boolean isLocked) {
+        leftLocked = isLocked;
+    }
+
+    public void setRightLocked(boolean isLocked) {
+        rightLocked = isLocked;
+    }
 
 }//end class
