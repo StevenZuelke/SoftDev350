@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Maze implements Serializable {
 
-    Room[][] Rooms;
+    static Room[][] Rooms;
     DataAccess DataAccess;
 
     //Constructor
@@ -23,7 +23,6 @@ public class Maze implements Serializable {
         Rooms = new Room[3][3];
         DataAccess = new DataAccess();
         SetupRooms();
-
 
     }//end Constructor
 
@@ -60,25 +59,30 @@ public class Maze implements Serializable {
 
     }//end AskQuestion
 
+    //Method to lock the door in the direction that an incorrect answer was provided
     private void lockDoor(int direction) {
         Point2D currentRoom = GetRoom();
         if(direction == 0) {
             Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].setBottomLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setTopLocked(true);
             System.out.println("The room above you is now locked forever :(");
         }
         if(direction == 1) {
-            Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].setRightLocked(true);
+            Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].setLeftLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setRightLocked(true);
             System.out.println("The room to the right of you is now locked forever :(");
         }
         if(direction == 2) {
             Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].setTopLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setBottomLocked(true);
             System.out.println("The room below you is now locked forever :(");
         }
         if(direction == 3) {
-            Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].setLeftLocked(true);
+            Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].setRightLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setLeftLocked(true);
             System.out.println("The room to the left of you is now locked forever :(");
         }
-    }
+    }//lockDoor
 
     //Method to try and move the player to a new room
     //Index parameter at 0 is UP and increments Clockwise
@@ -98,24 +102,24 @@ public class Maze implements Serializable {
 
         switch(index){
             case 0:
-                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].getBottomLocked() && AskQuestion(0))
-                Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].SetOccupied(true);
-                else return false;
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].getBottomLocked() && AskQuestion(0)) {
+                    Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].SetOccupied(true);
+                } else return false;
                 break;
             case 1:
-                if(!Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].getRightLocked() && AskQuestion(1))
-                Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].SetOccupied(true);
-                else return false;
+                if(!Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].getRightLocked() && AskQuestion(1)) {
+                    Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].SetOccupied(true);
+                } else return false;
                 break;
             case 2:
-                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].getTopLocked() && AskQuestion(2))
-                Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].SetOccupied(true);
-                else return false;
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].getTopLocked() && AskQuestion(2)) {
+                    Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].SetOccupied(true);
+                } else return false;
                 break;
             case 3:
-                if(!Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].getLeftLocked() && AskQuestion(3))
-                Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].SetOccupied(true);
-                else return false;
+                if(!Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].getLeftLocked() && AskQuestion(3)) {
+                    Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].SetOccupied(true);
+                } else return false;
                 break;
         }//end switch index
 
@@ -192,7 +196,7 @@ public class Maze implements Serializable {
 
     //Method to return the current room of the player with Point2D
 
-    public Point2D GetRoom(){
+    public static Point2D GetRoom(){
 
         Point2D currentRoom = new Point2D(0, 0);
 
@@ -208,6 +212,11 @@ public class Maze implements Serializable {
 
         return currentRoom;
     }//end GetRoom
+
+    //Method to return the array of rooms
+    public static Room[][] GetAllRooms() {
+        return Rooms;
+    }
 
     //Method to Pick a question from database that isn't already in use
 
@@ -286,5 +295,11 @@ public class Maze implements Serializable {
         }//end for i
 
     }//end SetupRooms
+
+    public void DisplayRoom() {
+        Boolean moved = true;
+        Point2D currentRoom = GetRoom();
+        Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].DisplayRoom();
+    }
 
 }

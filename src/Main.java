@@ -130,7 +130,6 @@ public class Main {
     private static void DisplayRoom(){
 
 
-
     }//end DisplayRoom
 
     //Method to list all questions within data program
@@ -502,7 +501,7 @@ public class Main {
         while(!valid){
 
             System.out.println("You are in room: " + Maze.GetRoom().getX() + ", " + Maze.GetRoom().getY());
-            DisplayRoom();
+            Maze.DisplayRoom();
             System.out.println("Which direction do you want to go?");
             System.out.println("Enter S to save game");
             System.out.println("Enter Q to quit game");
