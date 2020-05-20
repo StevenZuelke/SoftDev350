@@ -1,13 +1,13 @@
 //This class is to test all functionality of the methods in Maze
 
 import javafx.geometry.Point2D;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class MazeTests {
+public class MazeTests {
 
     @Test
     public void CheckWinWorksWin(){

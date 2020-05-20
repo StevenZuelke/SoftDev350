@@ -17,6 +17,7 @@ public class Main {
     private static Scanner Scan;
     private static ArrayList<String> ValidInput = new ArrayList<String>();
     private static Maze Maze;
+    private static boolean NeedsSaved = true;
 
     public static void main(String[] args) {
 
@@ -190,6 +191,13 @@ public class Main {
     private static boolean LoadGame(){
 
         boolean loaded = false;
+        try {
+            SaveData data = (SaveData) ResourceManager.Load("savedGame.triv");
+            Maze = data.maze;
+            loaded = true;
+        } catch(Exception e) {
+            System.out.println("Couldn't load saved data: " + e.getMessage());
+        }
 
         return loaded;
 
@@ -412,6 +420,16 @@ public class Main {
     //Method to save the game
 
     private static void SaveGame(){
+
+        SaveData data = new SaveData();
+        data.maze = Maze;
+
+        try {
+            ResourceManager.Save(data, "savedGame.triv");
+            NeedsSaved = false;
+        } catch (Exception e){
+            System.out.println("Couldn't save: " + e.getMessage());
+        }
 
 
 

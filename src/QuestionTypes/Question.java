@@ -40,7 +40,7 @@ public abstract class Question implements Serializable {
         File soundFile;
         answer = answer.toUpperCase();
 
-        if(answer == Correct){
+        if(answer.equals(Correct)){
 
             correct = true;
             soundFile = GoodSoundFile;

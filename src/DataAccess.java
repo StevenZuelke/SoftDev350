@@ -8,10 +8,11 @@ import QuestionTypes.Question;
 import QuestionTypes.ShortAnswer;
 import QuestionTypes.TrueFalse;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DataAccess {
+public class DataAccess implements Serializable {
 
     private ArrayList<Question> Questions = new ArrayList<Question>();
 
