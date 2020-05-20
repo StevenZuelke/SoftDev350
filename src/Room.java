@@ -13,10 +13,6 @@ public class Room implements Serializable {
     //QuestionTypes.Question[0] is up and increments Clockwise
     private Question[] Questions;
     private Boolean Occupied;
-    private boolean topLocked = false;
-    private boolean bottomLocked = false;
-    private boolean leftLocked = false;
-    private boolean rightLocked = false;
 
     //Constructor
 
@@ -48,48 +44,56 @@ public class Room implements Serializable {
     }//end GetQuestion
 
     public boolean getTopLocked() {
+
+        boolean topLocked = Questions[0].GetLocked();
         if(topLocked) {
+
             System.out.println("Sorry, this door is locked");
-        }
+
+        }//end if
+
         return topLocked;
-    }
+
+    }//end getTopLocked
 
     public boolean getBottomLocked() {
+
+        boolean bottomLocked = Questions[2].GetLocked();
         if(bottomLocked) {
+
             System.out.println("Sorry, this door is locked");
-        }
+
+        }//end if
+
         return bottomLocked;
-    }
+
+    }//end getBottomLocked
 
     public boolean getLeftLocked() {
+
+        boolean leftLocked = Questions[3].GetLocked();
         if(leftLocked) {
+
             System.out.println("Sorry, this door is locked");
-        }
+
+        }//end if
+
         return leftLocked;
-    }
+
+    }//end getLeftLocked
 
     public boolean getRightLocked() {
+
+        boolean rightLocked = Questions[1].GetLocked();
         if(rightLocked) {
+
             System.out.println("Sorry, this door is locked");
-        }
+
+        }//end if
+
         return rightLocked;
-    }
 
-    public void setBottomLocked(boolean isLocked) {
-        bottomLocked = isLocked;
-    }
-
-    public void setTopLocked(boolean isLocked) {
-        topLocked = isLocked;
-    }
-
-    public void setLeftLocked(boolean isLocked) {
-        leftLocked = isLocked;
-    }
-
-    public void setRightLocked(boolean isLocked) {
-        rightLocked = isLocked;
-    }
+    }//end getRightLocked()
 
     public void DisplayRoom() {
         String wallBelow = "- - - - - - - - - -\n";
@@ -135,39 +139,40 @@ public class Room implements Serializable {
 
         if(Maze.GetRoom().getY() == 0) {
             finalRoomString += wallAbove;
-        } else if(topLocked) {
+        } else if(getTopLocked()) {
             finalRoomString += lockedRoomAbove;
         } else {
             finalRoomString += openRoomAbove;
         }
 
-        if(Maze.GetRoom().getX() == 0 && rightLocked) {
+        if(Maze.GetRoom().getX() == 0 && getRightLocked()) {
             finalRoomString += wallLeftAndLockedRight;
-        } else if (Maze.GetRoom().getX() == 0 && !rightLocked) {
+        } else if (Maze.GetRoom().getX() == 0 && !getRightLocked()) {
                 finalRoomString += wallLeftAndUnlockedRight;
-        } else if (Maze.GetRoom().getX() == Maze.GetAllRooms().length - 1 && !leftLocked) {
+        } else if (Maze.GetRoom().getX() == Maze.GetAllRooms().length - 1 && !getLeftLocked()) {
                 finalRoomString += unlockedLeftAndWallRight;
-        } else if (Maze.GetRoom().getX() == Maze.GetAllRooms().length - 1 && leftLocked) {
+        } else if (Maze.GetRoom().getX() == Maze.GetAllRooms().length - 1 && getLeftLocked()) {
             finalRoomString += lockedLeftAndWallRight;
-        } else if (!leftLocked && !rightLocked) {
+        } else if (!getLeftLocked() && !getRightLocked()) {
             finalRoomString += unlockedLeftAndRight;
-        } else if (leftLocked && rightLocked) {
+        } else if (getLeftLocked() && getRightLocked()) {
             finalRoomString += lockedLeftAndRight;
-        } else if (leftLocked && !rightLocked) {
+        } else if (getLeftLocked() && !getRightLocked()) {
             finalRoomString += lockedLeftAndUnlockedRight;
-        } else if (!leftLocked && rightLocked) {
+        } else if (!getLeftLocked() && getRightLocked()) {
             finalRoomString += unlockedLeftAndLockedRight;
         }
 
         if(Maze.GetRoom().getY() == Maze.GetAllRooms().length - 1) {
             finalRoomString += wallBelow;
-        } else if(bottomLocked) {
+        } else if(getBottomLocked()) {
             finalRoomString += lockedRoomBelow;
         } else {
             finalRoomString += openRoomBelow;
         }
 
         System.out.println(finalRoomString);
+
     }
 
 }//end class

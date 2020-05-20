@@ -32,19 +32,18 @@ public class Maze implements Serializable {
 
         boolean correct = false;
         String input = "";
-
         Point2D currentRoom = GetRoom();
-        System.out.println(Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction).GetTitle());
-        if(Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction).GetAnswers().length > 0){
+        Question question = Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction);
 
-            System.out.print("(");
-            for(int i = 0; i < Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction).GetAnswers().length; i++){
+        System.out.println(question.GetTitle());
+        if(question.GetAnswers().length == 4){
 
-                System.out.print(Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction).GetAnswers()[i] + " ");
+            System.out.println("Answers:");
+            for(int i = 0; i < question.GetAnswers().length; i++){
+
+                System.out.println(question.GetAnswers()[i]);
 
             }//end for i
-
-            System.out.print(")");
 
         }//end if answers > 0
 
@@ -53,36 +52,13 @@ public class Maze implements Serializable {
         if(correct) System.out.println("Correct!");
         else {
             System.out.println("Incorrect!");
-            lockDoor(direction);
+            LockDoor(direction);
         }
         return correct;
 
     }//end AskQuestion
 
-    //Method to lock the door in the direction that an incorrect answer was provided
-    private void lockDoor(int direction) {
-        Point2D currentRoom = GetRoom();
-        if(direction == 0) {
-            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].setBottomLocked(true);
-            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setTopLocked(true);
-            System.out.println("The room above you is now locked forever :(");
-        }
-        if(direction == 1) {
-            Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].setLeftLocked(true);
-            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setRightLocked(true);
-            System.out.println("The room to the right of you is now locked forever :(");
-        }
-        if(direction == 2) {
-            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].setTopLocked(true);
-            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setBottomLocked(true);
-            System.out.println("The room below you is now locked forever :(");
-        }
-        if(direction == 3) {
-            Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].setRightLocked(true);
-            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].setLeftLocked(true);
-            System.out.println("The room to the left of you is now locked forever :(");
-        }
-    }//lockDoor
+
 
     //Method to try and move the player to a new room
     //Index parameter at 0 is UP and increments Clockwise
@@ -194,6 +170,14 @@ public class Maze implements Serializable {
 
     }//end CheckWin
 
+    public void DisplayRoom() {
+
+        Boolean moved = true;
+        Point2D currentRoom = GetRoom();
+        Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].DisplayRoom();
+
+    }//end DisplayRoom
+
     //Method to return the current room of the player with Point2D
 
     public static Point2D GetRoom(){
@@ -217,6 +201,40 @@ public class Maze implements Serializable {
     public static Room[][] GetAllRooms() {
         return Rooms;
     }
+
+    //Method to lock the door in the direction that an incorrect answer was provided
+    private void LockDoor(int direction) {
+        Point2D currentRoom = GetRoom();
+        if(direction == 0) {
+
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].GetQuestion(2).SetLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(0).SetLocked(true);
+            System.out.println("The room above you is now locked forever :(");
+
+        }
+        if(direction == 1) {
+
+            Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].GetQuestion(3).SetLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(1).SetLocked(true);
+            System.out.println("The room to the right of you is now locked forever :(");
+
+        }
+        if(direction == 2) {
+
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].GetQuestion(0).SetLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(2).SetLocked(true);
+            System.out.println("The room below you is now locked forever :(");
+
+        }
+        if(direction == 3) {
+
+            Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].GetQuestion(1).SetLocked(true);
+            Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(3).SetLocked(true);
+            System.out.println("The room to the left of you is now locked forever :(");
+
+        }
+
+    }//end lockDoor
 
     //Method to Pick a question from database that isn't already in use
 
@@ -296,10 +314,5 @@ public class Maze implements Serializable {
 
     }//end SetupRooms
 
-    public void DisplayRoom() {
-        Boolean moved = true;
-        Point2D currentRoom = GetRoom();
-        Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].DisplayRoom();
-    }
 
 }

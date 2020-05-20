@@ -18,7 +18,8 @@ public class Main {
     private static Scanner Scan;
     private static ArrayList<String> ValidInput = new ArrayList<String>();
     private static Maze Maze;
-    private static boolean NeedsSaved = true;
+    private static boolean NeedsSaved = false;
+    private static String SavedFile = null;
 
     public static void main(String[] args) {
 
@@ -125,13 +126,6 @@ public class Main {
 
     }//end AddQuestions
 
-    //Method to display the room to console
-
-    private static void DisplayRoom(){
-
-
-    }//end DisplayRoom
-
     //Method to list all questions within data program
 
     private static void ListQuestions(){
@@ -221,6 +215,14 @@ public class Main {
         } //end else
         return loaded;
     }//end LoadGame
+
+    //Method to handle a lost game
+
+    private static void LostGame(){
+
+
+
+    }//end LostGame
 
     //Main Menu for the Database (List, Add, Remove)
 
@@ -336,19 +338,33 @@ public class Main {
     private static void PlayGame(){
 
         boolean gameOver = false;
+        boolean won = false;
+        boolean lost = false;
 
         System.out.println("Welcome to the Trivia Game!");
+        System.out.println("Enter 1 to start!" +
+                            "Enter 2 for directions");
+        ValidInput.clear();
+        ValidInput.add("1");
+        ValidInput.add("2");
+        String input = ReadInput();
+        if(input.equals("2")) ViewInstructions();
         while(!gameOver){
 
             TakeTurn();
-            if(Maze.CheckLoss(0,0, new ArrayList<Point2D>()) ||
-                Maze.CheckWin()){
+            won = Maze.CheckWin();
+            lost = Maze.CheckLoss(0,0, new ArrayList<Point2D>());
+            if(won || lost){
 
                 gameOver = true;
 
             }//end if games over
 
         }//end while game not over
+
+        if(won) WonGame();
+
+        if(lost) LostGame();
 
     }//end PlayGame
 
@@ -358,25 +374,27 @@ public class Main {
 
         String input;
 
-        System.out.println("Before quitting, would you like to save the game?\n" +
-                "Enter 1 to save the game\n" +
-                "Enter 2 to return to the main menu without saving");
+        if(NeedsSaved){
 
-        ValidInput.clear();
-        ValidInput.add("1");
-        ValidInput.add("2");
-        input = ReadInput();
-        switch(input){
+            System.out.println("Before quitting, would you like to save the game?\n" +
+                    "Enter 1 to save the game\n" +
+                    "Enter 2 to return to the main menu without saving");
 
-            case "1":
-                SaveGame();
-                MainGameMenu();
-                break;
-            case "2":
-                MainDataMenu();
-                break;
+            ValidInput.clear();
+            ValidInput.add("1");
+            ValidInput.add("2");
+            input = ReadInput();
+            switch(input){
 
-        }
+                case "1":
+                    SaveGame();
+                    break;
+
+            }//end switch
+
+            MainGameMenu();
+
+        }//end if
 
     }//method to QuitGame
 
@@ -392,7 +410,7 @@ public class Main {
             System.out.print("(Answers: ");
             for(String string : ValidInput){
 
-                System.out.print(string + " ");
+                System.out.print(string + ", ");
 
             }//end foreach
 
@@ -458,11 +476,29 @@ public class Main {
 
         SaveData data = new SaveData();
         data.maze = Maze;
+        boolean needsName = true;
 
-        System.out.println("Please enter a name for your saved game: ");
-        String fileName = Scan.nextLine();
-        File file = new File("resources/savedGames/" + fileName + ".triv");
-        if(file.isFile()) {
+        if(SavedFile != null){
+
+            System.out.println("Enter 1 to use current file,");
+            System.out.println("Enter 2 to create a new file");
+            ValidInput.clear();
+            ValidInput.add("1");
+            ValidInput.add("2");
+            String input = ReadInput();
+            if(input.equals("1")) needsName = false;
+
+        }//end if not null
+
+        if(needsName){
+
+            System.out.println("Please enter a name for your saved game: ");
+            SavedFile = Scan.nextLine();
+
+        }//end if needsname
+
+        File file = new File("resources/savedGames/" + SavedFile + ".triv");
+        if(file.isFile() && needsName) {
             System.out.println(file.getName() + " already exists, would you like to overwrite it?\n" +
                     "Enter 1 to overwrite file\n" +
                     "Enter 2 to choose new file name");
@@ -478,16 +514,16 @@ public class Main {
                     SaveGame();
                     return;
             }
-        } else {
-
-            try {
-                ResourceManager.Save(data, "resources/savedGames/" + fileName + ".triv");
-                NeedsSaved = false;
-            } catch (Exception e) {
-                System.out.println("Couldn't save: " + e.getMessage());
-            }
-
         }
+
+        try {
+
+            ResourceManager.Save(data, "resources/savedGames/" + SavedFile + ".triv");
+            NeedsSaved = false;
+
+        } catch (Exception e) {
+            System.out.println("Couldn't save: " + e.getMessage());
+        }//end try
 
     }//end SaveGame
 
@@ -500,15 +536,15 @@ public class Main {
 
         while(!valid){
 
-            System.out.println("You are in room: " + Maze.GetRoom().getX() + ", " + Maze.GetRoom().getY());
+            System.out.println("You are in room: " + (int) Maze.GetRoom().getX() + ", " + (int) Maze.GetRoom().getY());
             Maze.DisplayRoom();
             System.out.println("Which direction do you want to go?");
             System.out.println("Enter S to save game");
             System.out.println("Enter Q to quit game");
             ValidInput.clear();
+            ValidInput.add("0");
             ValidInput.add("1");
             ValidInput.add("2");
-            ValidInput.add("0");
             ValidInput.add("3");
             ValidInput.add("Q");
             ValidInput.add("S");
@@ -523,6 +559,7 @@ public class Main {
                     return;
                 default:
                     valid = Maze.ChangeRooms(Integer.parseInt(input));
+                    NeedsSaved = true;
                     break;
 
             }//end switch input
@@ -530,5 +567,21 @@ public class Main {
         }//end while not valid
 
     }//end Take Turn
+
+    //Method to handle a player winning the game
+
+    private static void WonGame(){
+
+
+
+    }//end wongame
+
+    //Method to print specific instructions and game description to console
+
+    private static void ViewInstructions(){
+
+
+
+    }//end ViewInstructions
 
 }//end class

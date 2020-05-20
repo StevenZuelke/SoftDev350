@@ -40,14 +40,13 @@ public abstract class Question implements Serializable {
         File soundFile;
         answer = answer.toUpperCase();
 
-        if(answer.equals(Correct)){
+        if(answer.equals(Correct.toUpperCase()) || answer.equals("CHEAT")){
 
             correct = true;
             soundFile = GoodSoundFile;
 
         }else{ //end correct if
 
-            Locked = true;
             soundFile = BadSoundFile;
 
         }// end incorrect if
@@ -80,6 +79,10 @@ public abstract class Question implements Serializable {
 
     public String GetTitle(){ return Title; }
 
+    public void SetLocked(boolean locked){
 
+        Locked = locked;
 
-}
+    }//end setlocked
+
+}//end class
