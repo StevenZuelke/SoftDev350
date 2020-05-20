@@ -7,6 +7,7 @@ import QuestionTypes.ShortAnswer;
 import javafx.geometry.Point2D;
 
 import javax.xml.crypto.Data;
+import java.io.File;
 import java.sql.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -191,16 +192,35 @@ public class Main {
     private static boolean LoadGame(){
 
         boolean loaded = false;
-        try {
-            SaveData data = (SaveData) ResourceManager.Load("savedGame.triv");
-            Maze = data.maze;
-            loaded = true;
-        } catch(Exception e) {
-            System.out.println("Couldn't load saved data: " + e.getMessage());
-        }
+        File savedGameDirectory = new File("resources/savedGames");
 
+        if(savedGameDirectory.list().length == 0) {
+            System.out.println("There are no saved games available");
+            MainGameMenu();
+        } else {
+            //Creates a list of possible saved games to choose from
+            String[] saveGameList = savedGameDirectory.list();
+            System.out.println("Please enter the saved game you'd like to load from the options:");
+            ValidInput.clear();
+
+            for(int i = 0; i < saveGameList.length; i++) {
+                //The value of i is changed to accommodate index selection without beginning options list at 0
+                System.out.println(i + 1 + ": " + saveGameList[i]);
+                ValidInput.add(String.valueOf(i + 1));
+            } //end for loop
+
+            String input = ReadInput();
+
+            try {
+                //Will save the game with the chosen file name
+                SaveData data = (SaveData) ResourceManager.Load("resources/savedGames/" + saveGameList[Integer.parseInt(input) - 1]);
+                Maze = data.maze;
+                loaded = true;
+            } catch (Exception e) {
+                System.out.println("Couldn't load saved data: " + e.getMessage());
+            }
+        } //end else
         return loaded;
-
     }//end LoadGame
 
     //Main Menu for the Database (List, Add, Remove)
@@ -260,11 +280,7 @@ public class Main {
                 NewGame();
                 break;
             case "2":
-                if(!LoadGame()) {
-
-                    System.out.println("Load failed!");
-
-                }else{//end if Load fail
+                if(LoadGame()) {
 
                     PlayGame();
 
@@ -341,7 +357,27 @@ public class Main {
 
     private static void QuitGame(){
 
+        String input;
 
+        System.out.println("Before quitting, would you like to save the game?\n" +
+                "Enter 1 to save the game\n" +
+                "Enter 2 to return to the main menu without saving");
+
+        ValidInput.clear();
+        ValidInput.add("1");
+        ValidInput.add("2");
+        input = ReadInput();
+        switch(input){
+
+            case "1":
+                SaveGame();
+                MainGameMenu();
+                break;
+            case "2":
+                MainDataMenu();
+                break;
+
+        }
 
     }//method to QuitGame
 
@@ -424,14 +460,35 @@ public class Main {
         SaveData data = new SaveData();
         data.maze = Maze;
 
-        try {
-            ResourceManager.Save(data, "savedGame.triv");
-            NeedsSaved = false;
-        } catch (Exception e){
-            System.out.println("Couldn't save: " + e.getMessage());
+        System.out.println("Please enter a name for your saved game: ");
+        String fileName = Scan.nextLine();
+        File file = new File("resources/savedGames/" + fileName + ".triv");
+        if(file.isFile()) {
+            System.out.println(file.getName() + " already exists, would you like to overwrite it?\n" +
+                    "Enter 1 to overwrite file\n" +
+                    "Enter 2 to choose new file name");
+            ValidInput.clear();
+            ValidInput.add("1");
+            ValidInput.add("2");
+            String input = ReadInput();
+            switch(input){
+
+                case "1":
+                    break;
+                case "2":
+                    SaveGame();
+                    return;
+            }
+        } else {
+
+            try {
+                ResourceManager.Save(data, "resources/savedGames/" + fileName + ".triv");
+                NeedsSaved = false;
+            } catch (Exception e) {
+                System.out.println("Couldn't save: " + e.getMessage());
+            }
+
         }
-
-
 
     }//end SaveGame
 
