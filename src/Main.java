@@ -353,19 +353,14 @@ public class Main {
 
             TakeTurn();
             won = Maze.CheckWin();
-            lost = Maze.CheckLoss(0,0, new ArrayList<Point2D>());
-            if(won || lost){
+            if(won){
 
-                gameOver = true;
+                WonGame();
 
             }//end if games over
 
         }//end while game not over
-
-        if(won) WonGame();
-
-        if(lost) LostGame();
-
+        
     }//end PlayGame
 
     //Method to check if player wants to save before quitting
@@ -561,6 +556,8 @@ public class Main {
                     return;
                 default:
                     valid = Maze.ChangeRooms(Integer.parseInt(input));
+                    if(!valid && Maze.CheckLoss(0,0, new ArrayList<Point2D>()))
+                        LostGame();
                     NeedsSaved = true;
                     break;
 

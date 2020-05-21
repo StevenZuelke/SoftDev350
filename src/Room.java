@@ -46,12 +46,6 @@ public class Room implements Serializable {
     public boolean getTopLocked() {
 
         boolean topLocked = Questions[0].GetLocked();
-        if(topLocked) {
-
-            System.out.println("Sorry, this door is locked");
-
-        }//end if
-
         return topLocked;
 
     }//end getTopLocked
@@ -59,12 +53,6 @@ public class Room implements Serializable {
     public boolean getBottomLocked() {
 
         boolean bottomLocked = Questions[2].GetLocked();
-        if(bottomLocked) {
-
-            System.out.println("Sorry, this door is locked");
-
-        }//end if
-
         return bottomLocked;
 
     }//end getBottomLocked
@@ -72,12 +60,6 @@ public class Room implements Serializable {
     public boolean getLeftLocked() {
 
         boolean leftLocked = Questions[3].GetLocked();
-        if(leftLocked) {
-
-            System.out.println("Sorry, this door is locked");
-
-        }//end if
-
         return leftLocked;
 
     }//end getLeftLocked
@@ -85,12 +67,6 @@ public class Room implements Serializable {
     public boolean getRightLocked() {
 
         boolean rightLocked = Questions[1].GetLocked();
-        if(rightLocked) {
-
-            System.out.println("Sorry, this door is locked");
-
-        }//end if
-
         return rightLocked;
 
     }//end getRightLocked()

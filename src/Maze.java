@@ -20,7 +20,7 @@ public class Maze implements Serializable {
 
     public Maze(){
 
-        Rooms = new Room[3][3];
+        Rooms = new Room[4][4];
         DataAccess = new DataAccess();
         SetupRooms();
 
