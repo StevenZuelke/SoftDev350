@@ -78,22 +78,22 @@ public class Maze implements Serializable {
 
         switch(index){
             case 0:
-                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].getBottomLocked() && AskQuestion(0)) {
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].getTopLocked() && AskQuestion(0)) {
                     Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() - 1].SetOccupied(true);
                 } else return false;
                 break;
             case 1:
-                if(!Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].getRightLocked() && AskQuestion(1)) {
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].getRightLocked() && AskQuestion(1)) {
                     Rooms[(int) currentRoom.getX() + 1][(int) currentRoom.getY()].SetOccupied(true);
                 } else return false;
                 break;
             case 2:
-                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].getTopLocked() && AskQuestion(2)) {
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].getBottomLocked() && AskQuestion(2)) {
                     Rooms[(int) currentRoom.getX()][(int) currentRoom.getY() + 1].SetOccupied(true);
                 } else return false;
                 break;
             case 3:
-                if(!Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].getLeftLocked() && AskQuestion(3)) {
+                if(!Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].getLeftLocked() && AskQuestion(3)) {
                     Rooms[(int) currentRoom.getX() - 1][(int) currentRoom.getY()].SetOccupied(true);
                 } else return false;
                 break;

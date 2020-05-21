@@ -342,7 +342,7 @@ public class Main {
         boolean lost = false;
 
         System.out.println("Welcome to the Trivia Game!");
-        System.out.println("Enter 1 to start!" +
+        System.out.println("Enter 1 to start!\n" +
                             "Enter 2 for directions");
         ValidInput.clear();
         ValidInput.add("1");
@@ -392,9 +392,11 @@ public class Main {
 
             }//end switch
 
-            MainGameMenu();
+
 
         }//end if
+
+        MainGameMenu();
 
     }//method to QuitGame
 
