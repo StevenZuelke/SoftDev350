@@ -226,7 +226,7 @@ public class Main {
 
     //Main Menu for the Database (List, Add, Remove)
 
-    public static void MainDataMenu(){
+    private static void MainDataMenu(){
 
         String input;
 
@@ -262,7 +262,7 @@ public class Main {
 
     //Main Menu for the Trivia Maze (New/Load, Instructions etc)
 
-    public static void MainGameMenu(){
+    private static void MainGameMenu(){
 
         String input;
 
@@ -299,7 +299,7 @@ public class Main {
     //Method to present main menu and
     //Goto either Database, or to the Game
 
-    public static void MainMenu(){
+    private static void MainMenu(){
 
         String input;
 
@@ -360,7 +360,7 @@ public class Main {
             }//end if games over
 
         }//end while game not over
-        
+
     }//end PlayGame
 
     //Method to check if player wants to save before quitting
