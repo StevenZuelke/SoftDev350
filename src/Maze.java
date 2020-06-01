@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Maze implements Serializable {
 
-    static Room[][] Rooms;
+    Room[][] Rooms;
     DataAccess DataAccess;
     private int lockedRoomsCount = 0;
     private int correctAnswersCount = 0;
@@ -180,13 +180,89 @@ public class Maze implements Serializable {
 
         Boolean moved = true;
         Point2D currentRoom = GetRoom();
-        Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].DisplayRoom();
+        Room room = Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()];
+
+        String wallBelow = "- - - - - - - - - -\n";
+        String wallAbove = "- - - - - - - - - -\n";
+        String openRoomAbove = "- - - O P E N - - -\n";
+        String lockedRoomAbove = "- - L O C K E D - -\n";
+        String openRoomBelow = "- - - O P E N - - -\n";
+        String lockedRoomBelow = "- - L O C K E D - -\n";
+        String lockedLeftAndRight = "|                  |\n" + "|                  |\n"
+                +"L                  L\n" +"O                  O\n" +"C                  C\n"
+                +"K                  K\n" +"E                  E\n" +"D                  D\n"
+                +"|                  |\n" +"|                  |\n";
+
+        String unlockedLeftAndRight = "|                  |\n" + "|                  |\n"
+                +"|                  |\n" +"O                  O\n" +"P                  P\n"
+                +"E                  E\n" +"N                  N\n" +"|                  |\n"
+                +"|                  |\n" +"|                  |\n";
+        String unlockedLeftAndLockedRight = "|                  |\n" + "|                  |\n"
+                +"|                  L\n" +"O                  O\n" +"P                  C\n"
+                +"E                  K\n" +"N                  E\n" +"|                  D\n"
+                +"|                  |\n" +"|                  |\n";
+        String lockedLeftAndUnlockedRight = "|                  |\n" + "|                  |\n"
+                +"L                  |\n" +"O                  O\n" +"C                  P\n"
+                +"K                  E\n" +"E                  N\n" +"D                  |\n"
+                +"|                  |\n" +"|                  |\n";
+        String wallLeftAndUnlockedRight = "|                  |\n" + "|                  |\n"
+                +"|                  |\n" +"|                  O\n" +"|                  P\n"
+                +"|                  E\n" +"|                  N\n" +"|                  |\n"
+                +"|                  |\n" +"|                  |\n";
+        String wallLeftAndLockedRight = "|                  |\n" + "|                  |\n"
+                +"|                  L\n" +"|                  O\n" +"|                  C\n"
+                +"|                  K\n" +"|                  E\n" +"|                  D\n"
+                +"|                  |\n" +"|                  |\n";
+        String unlockedLeftAndWallRight = "|                  |\n" + "|                  |\n"
+                +"|                  |\n" +"O                  |\n" +"P                  |\n"
+                +"E                  |\n" +"N                  |\n" +"|                  |\n"
+                +"|                  |\n" +"|                  |\n";
+        String lockedLeftAndWallRight = "|                  |\n" + "|                  |\n"
+                +"L                  |\n" +"O                  |\n" +"C                  |\n"
+                +"K                  |\n" +"E                  |\n" +"D                  |\n"
+                +"|                  |\n" +"|                  |\n";
+        String finalRoomString = "";
+        if(GetRoom().getY() == 0) {
+            finalRoomString += wallAbove;
+        } else if(room.getTopLocked()) {
+            finalRoomString += lockedRoomAbove;
+        } else {
+            finalRoomString += openRoomAbove;
+        }
+
+        if(GetRoom().getX() == 0 && room.getRightLocked()) {
+            finalRoomString += wallLeftAndLockedRight;
+        } else if (GetRoom().getX() == 0 && !room.getRightLocked()) {
+            finalRoomString += wallLeftAndUnlockedRight;
+        } else if (GetRoom().getX() == GetAllRooms().length - 1 && !room.getLeftLocked()) {
+            finalRoomString += unlockedLeftAndWallRight;
+        } else if (GetRoom().getX() == GetAllRooms().length - 1 && room.getLeftLocked()) {
+            finalRoomString += lockedLeftAndWallRight;
+        } else if (!room.getLeftLocked() && !room.getRightLocked()) {
+            finalRoomString += unlockedLeftAndRight;
+        } else if (room.getLeftLocked() && room.getRightLocked()) {
+            finalRoomString += lockedLeftAndRight;
+        } else if (room.getLeftLocked() && !room.getRightLocked()) {
+            finalRoomString += lockedLeftAndUnlockedRight;
+        } else if (!room.getLeftLocked() && room.getRightLocked()) {
+            finalRoomString += unlockedLeftAndLockedRight;
+        }
+
+        if(GetRoom().getY() == GetAllRooms().length - 1) {
+            finalRoomString += wallBelow;
+        } else if(room.getBottomLocked()) {
+            finalRoomString += lockedRoomBelow;
+        } else {
+            finalRoomString += openRoomBelow;
+        }
+
+        System.out.println(finalRoomString);
 
     }//end DisplayRoom
 
     //Method to return the current room of the player with Point2D
 
-    public static Point2D GetRoom(){
+    public Point2D GetRoom(){
 
         Point2D currentRoom = new Point2D(0, 0);
 
@@ -204,7 +280,7 @@ public class Maze implements Serializable {
     }//end GetRoom
 
     //Method to return the array of rooms
-    public static Room[][] GetAllRooms() {
+    public Room[][] GetAllRooms() {
         return Rooms;
     }
 

@@ -220,9 +220,9 @@ public class Main {
 
     private static void WonGame(){
 
-        System.out.println("Congratulations, you've won!\n");
+        System.out.println("Congratulations, you've won!");
         System.out.println("Incorrect Answers: " + Maze.getLockedRoomsCount());
-        System.out.println("Correct Answers: " + Maze.getCorrectAnswersCount());
+        System.out.println("Correct Answers: " + Maze.getCorrectAnswersCount() + "\n");
 
         MainGameMenu();
 
@@ -232,9 +232,9 @@ public class Main {
 
     private static void LostGame(){
 
-        System.out.println("Game Over.");
+        System.out.println("Game Over!");
         System.out.println("Incorrect Answers: " + Maze.getLockedRoomsCount());
-        System.out.println("Correct Answers: " + Maze.getCorrectAnswersCount());
+        System.out.println("Correct Answers: " + Maze.getCorrectAnswersCount() + "\n");
 
         MainGameMenu();
 
@@ -355,7 +355,6 @@ public class Main {
 
         boolean gameOver = false;
         boolean won = false;
-        boolean lost = false;
 
         System.out.println("Welcome to the Trivia Game!");
         System.out.println("Enter 1 to Start!\n" +
