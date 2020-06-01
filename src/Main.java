@@ -216,11 +216,27 @@ public class Main {
         return loaded;
     }//end LoadGame
 
+    //Method to handle a player winning the game
+
+    private static void WonGame(){
+
+        System.out.println("Congratulations, you've won!\n");
+        System.out.println("Incorrect Answers: " + Maze.getLockedRoomsCount());
+        System.out.println("Correct Answers: " + Maze.getCorrectAnswersCount());
+
+        MainGameMenu();
+
+    }//end wongame
+
     //Method to handle a lost game
 
     private static void LostGame(){
 
+        System.out.println("Game Over.");
+        System.out.println("Incorrect Answers: " + Maze.getLockedRoomsCount());
+        System.out.println("Correct Answers: " + Maze.getCorrectAnswersCount());
 
+        MainGameMenu();
 
     }//end LostGame
 
@@ -342,8 +358,8 @@ public class Main {
         boolean lost = false;
 
         System.out.println("Welcome to the Trivia Game!");
-        System.out.println("Enter 1 to start!\n" +
-                            "Enter 2 for directions");
+        System.out.println("Enter 1 to Start!\n" +
+                            "Enter 2 for Game Instructions");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -567,19 +583,21 @@ public class Main {
 
     }//end Take Turn
 
-    //Method to handle a player winning the game
-
-    private static void WonGame(){
-
-
-
-    }//end wongame
-
     //Method to print specific instructions and game description to console
 
-    private static void ViewInstructions(){
+    private static void ViewInstructions() {
 
+        String instructions = "How to Play...\n" +
+                "You're locked in a maze containing a series of rooms.\n" +
+                "To open the door to a room, you must first answer its trivia question.\n" +
+                "Do so correctly, and the door will open; fail, and that door is locked forever.\n\n" +
+                "The questions will take one of three forms:\n" +
+                "For true/false questions, simply enter a \"t\" for true and a \"f\" for false.\n" +
+                "For multiple choice questions, enter an \"a\",\"b\",\"c\", or \"d\" that's associated with your chosen answer.\n" +
+                "For short answer questions, we're looking for a single word answer, and spelling counts (sorry).\n\n" +
+                "And that's it. Navigate your way through the maze without locking yourself in, and you win!\n\n";
 
+        System.out.println(instructions);
 
     }//end ViewInstructions
 

@@ -15,6 +15,8 @@ public class Maze implements Serializable {
 
     static Room[][] Rooms;
     DataAccess DataAccess;
+    private int lockedRoomsCount = 0;
+    private int correctAnswersCount = 0;
 
     //Constructor
 
@@ -49,10 +51,14 @@ public class Maze implements Serializable {
 
         input = (new Scanner(System.in)).nextLine();
         correct = Rooms[(int) currentRoom.getX()][(int) currentRoom.getY()].GetQuestion(direction).CheckCorrect(input);
-        if(correct) System.out.println("Correct!");
+        if(correct) {
+            System.out.println("Correct!");
+            correctAnswersCount++;
+        }
         else {
             System.out.println("Incorrect!");
             LockDoor(direction);
+            lockedRoomsCount++;
         }
         return correct;
 
@@ -314,5 +320,14 @@ public class Maze implements Serializable {
 
     }//end SetupRooms
 
+    public int getLockedRoomsCount() {
 
+        return lockedRoomsCount;
+
+    }
+
+    public int getCorrectAnswersCount() {
+
+        return correctAnswersCount;
+    }
 }
