@@ -5,12 +5,14 @@ Author: Steven Zuelke
 
 import QuestionTypes.MultipleChoice;
 import QuestionTypes.Question;
+import QuestionTypes.ShortAnswer;
 import QuestionTypes.TrueFalse;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DataAccess {
+public class DataAccess implements Serializable {
 
     private ArrayList<Question> Questions = new ArrayList<Question>();
 
@@ -107,7 +109,7 @@ public class DataAccess {
 
         Connection connection = null;
         try{
-
+            Questions.clear();
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:trivia.db");
             Statement statement = connection.createStatement();
@@ -147,7 +149,7 @@ public class DataAccess {
 
                 String title = resultSet.getString("Title");
                 String correct = resultSet.getString("Correct");
-                Questions.add(new TrueFalse(title, correct));
+                Questions.add(new ShortAnswer(title, correct));
 
             }//end SA while
 

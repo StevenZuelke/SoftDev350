@@ -39,7 +39,6 @@ class QuestionTests {
 
         //Assert
         assertEquals(false, correct);
-        assertEquals(true, question.GetLocked());
 
     }//End ShortAnswer Incorrect
 
@@ -73,7 +72,6 @@ class QuestionTests {
 
         //Assert
         assertEquals(false, correct);
-        assertEquals(true, question.GetLocked());
 
     }//end TF Incorrect
 
@@ -105,7 +103,6 @@ class QuestionTests {
 
         //Assert
         assertEquals(false, correct);
-        assertEquals(true, question.GetLocked());
 
     }//end MC Incorrect
 
