@@ -178,6 +178,8 @@ public class Main {
 
         }//end foreach
 
+        ListQuestions();
+
     }//end ListQuestions
 
     //Method to Load a new game from a file, returns true if successful otherwise false
