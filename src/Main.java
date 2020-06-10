@@ -39,10 +39,10 @@ public class Main {
         String[] answers = new String[4];
         int numAns = 1; //will identify type of question by number of answers
 
-        System.out.println("To add Multiple Choice Enter 1\n" +
-                "To add True/False Enter 2\n" +
-                "To add Short Answer Enter 3" +
-                "To return to Database Menu Enter 4");
+        System.out.println("1. Add a Multiple Question\n" +
+                "2. Add a True/False Question\n" +
+                "3. Add a Short Answer Question" +
+                "4. Return to the Database");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -95,8 +95,8 @@ public class Main {
         }//end for i
 
         System.out.println("Correct: " + correct);
-        System.out.println("To confirm Enter 1\n" +
-                           "To retry Enter 2");
+        System.out.println("To confirm, Enter 1\n" +
+                           "To retry, Enter 2");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -134,10 +134,10 @@ public class Main {
         int numAns = 1; //will identify type of question by number of answers
         ArrayList<Question> questions = Maze.DataAccess.GetQuestions();
 
-        System.out.println("To see Multiple Choice Enter 1\n" +
-                "To see True/False Enter 2\n" +
-                "To see Short Answer Enter 3\n" +
-                "To return to Database Menu Enter 4");
+        System.out.println("1. View Multiple Choice Questions\n" +
+                "2. View True/False Questions\n" +
+                "3. View Short Answer Questions\n" +
+                "4. Return to the Database Menu");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -190,12 +190,12 @@ public class Main {
         File savedGameDirectory = new File("resources/savedGames");
 
         if(savedGameDirectory.list().length == 0) {
-            System.out.println("There are no saved games available");
+            System.out.println("There are no saved games available.");
             MainGameMenu();
         } else {
             //Creates a list of possible saved games to choose from
             String[] saveGameList = savedGameDirectory.list();
-            System.out.println("Please enter the saved game you'd like to load from the options:");
+            System.out.println("Please enter the saved game that you'd like to load from the list above: ");
             ValidInput.clear();
 
             for(int i = 0; i < saveGameList.length; i++) {
@@ -212,7 +212,7 @@ public class Main {
                 Maze = data.maze;
                 loaded = true;
             } catch (Exception e) {
-                System.out.println("Couldn't load saved data: " + e.getMessage());
+                System.out.println("Unable to load saved data: " + e.getMessage());
             }
         } //end else
         return loaded;
@@ -249,10 +249,11 @@ public class Main {
         String input;
 
         System.out.println("DATABASE");
-        System.out.println("To see existing questions Enter 1\n" +
-                           "To add new questions Enter 2\n" +
-                           "To remove questions Enter 3\n" +
-                           "To return to Main Menu Enter 4");
+        System.out.println("1. See existing questions\n" +
+                           "2. Add new questions\n" +
+                           "3. Remove questions\n" +
+                           "4. Return to Main Menu\n" +
+                           "Enter the number that corresponds to the desired option.");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -285,9 +286,10 @@ public class Main {
         String input;
 
         System.out.println("TRIVIA GAME");
-        System.out.println("To start a new game Enter 1\n" +
-                "To load an existing game file Enter 2\n" +
-                "To return to Main Menu Enter 3");
+        System.out.println("1. Start a new game\n" +
+                "2. Load an existing game file\n" +
+                "3. Return to Main Menu\n" +
+                "Enter the number that corresponds to the desired option.");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -322,8 +324,9 @@ public class Main {
         String input;
 
         System.out.println("Welcome!\n" +
-                           "Enter 1 to play Trivia Maze\n" +
-                           "Enter 2 to access the Database");
+                           "1. Play Trivia Maze\n" +
+                           "2. Access the Database\n +" +
+                           "Enter the number that corresponds to the desired option.");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -359,8 +362,8 @@ public class Main {
         boolean won = false;
 
         System.out.println("Welcome to the Trivia Game!");
-        System.out.println("Enter 1 to Start!\n" +
-                            "Enter 2 for Game Instructions");
+        System.out.println("1. Start!\n" +
+                           "2. View Game Instructions");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -389,8 +392,8 @@ public class Main {
         if(NeedsSaved){
 
             System.out.println("Before quitting, would you like to save the game?\n" +
-                    "Enter 1 to save the game\n" +
-                    "Enter 2 to return to the main menu without saving");
+                    "1. Save the game\n" +
+                    "2. Return to the main menu without saving");
 
             ValidInput.clear();
             ValidInput.add("1");
@@ -454,7 +457,7 @@ public class Main {
         String title, correct;
 
         System.out.println("To Remove a question: Enter the title\n" +
-                "To return to Database Menu Enter 1\n");
+                "To return to Database Menu, Enter 1\n");
         title = Scan.nextLine();
         if(title.equals("1")){
 
@@ -466,8 +469,8 @@ public class Main {
         //Confirm question before committing
         System.out.println("Confirm your question:");
         System.out.println(title);
-        System.out.println("To confirm Enter 1\n" +
-                "To retry Enter 2");
+        System.out.println("To confirm, Enter 1\n" +
+                "To retry, Enter 2");
         ValidInput.clear();
         ValidInput.add("1");
         ValidInput.add("2");
@@ -494,8 +497,8 @@ public class Main {
 
         if(SavedFile != null){
 
-            System.out.println("Enter 1 to use current file,");
-            System.out.println("Enter 2 to create a new file");
+            System.out.println("1. Use current file,");
+            System.out.println("2. Create a new file");
             ValidInput.clear();
             ValidInput.add("1");
             ValidInput.add("2");
@@ -514,8 +517,8 @@ public class Main {
         File file = new File("resources/savedGames/" + SavedFile + ".triv");
         if(file.isFile() && needsName) {
             System.out.println(file.getName() + " already exists, would you like to overwrite it?\n" +
-                    "Enter 1 to overwrite file\n" +
-                    "Enter 2 to choose new file name");
+                    "1. Overwrite file\n" +
+                    "2. Choose new file name");
             ValidInput.clear();
             ValidInput.add("1");
             ValidInput.add("2");
@@ -536,7 +539,7 @@ public class Main {
             NeedsSaved = false;
 
         } catch (Exception e) {
-            System.out.println("Couldn't save: " + e.getMessage());
+            System.out.println("Unable to save: " + e.getMessage());
         }//end try
 
     }//end SaveGame
@@ -552,7 +555,7 @@ public class Main {
 
             System.out.println("You are in room: " + (int) Maze.GetRoom().getX() + ", " + (int) Maze.GetRoom().getY());
             Maze.DisplayRoom();
-            System.out.println("Which direction do you want to go?");
+            System.out.println("Which direction would you like to go?");
             System.out.println("Enter S to save game");
             System.out.println("Enter Q to quit game");
             ValidInput.clear();
